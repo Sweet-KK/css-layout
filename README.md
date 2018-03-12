@@ -1,131 +1,29 @@
-# css-layout
-各种常见布局CSS实现,知名网站布局分析,相关好文推荐
-## 各种页面常见布局+知名网站实例分析+相关阅读推荐1.0版
+## 	各种页面常见布局+知名网站实例分析+相关阅读推荐
 
-**阅前必看：本文总结了各种常见的布局实现，网上搜的“史上最全布局”好像也没有这么全吧？哈哈！就当作一个知识整理吧。至于每个方法的兼容性和优缺点分析以后有时间再补吧。还有就是这篇文章没提到的其他布局，待本人后续想到或遇到定会在github上及时更新。各位读者如果发现问题或者有什么意见，欢迎提出！欢迎收藏！欢迎Star！**
+**阅前必看：本文总结了各种常见的布局实现，网上搜的“史上最全布局”好像也没有这么全吧？哈哈！就当作一个知识整理吧。至于每个方法的优缺点分析以后有时间再补吧。还有就是这篇文章没提到的其他布局，待本人后续想到或遇到定会在github上及时更新。各位读者如果发现问题或者有什么意见，欢迎提出！欢迎关注！欢迎Star！**
+
+**在github上没有目录，建议下载一些支持生成目录的md软件帮助阅读，比如Typora**
 
 
-> from [https://github.com/Sweet-KK/css-layout](https://github.com/Sweet-KK/css-layout)     
+
+> from [https://github.com/Sweet-KK/css-layout](https://github.com/Sweet-KK/css-layout)
 > 本文原创，转载请标明出处，摘要引流则随意。
 
 
 
 ### 目录
-  
-[一、水平居中](#1)    
-[ (1)文本/行内元素/行内块级元素](#1.1)    
-[ (2)单个块级元素](#1.2)       
-[ (3)多个块级元素](#1.3)       
-[ (4)使用绝对定位实现](#1.4)       
-[ (5)任意个元素(flex)](#1.5)       
-[二、垂直居中](#2)       
-[ (1)单行文本/行内元素/行内块级元素](#2.1)       
-[ (2)多行文本/行内元素/行内块级元素](#2.2)       
-[ (3)图片](#2.3)       
-[ (4)单个块级元素](#2.4)       
-[ --(1) 使用tabel-cell实现:](#2.4.1)       
-[ --(2) 使用绝对定位实现:](#2.4.2)       
-[ --(3) 使用flex实现:](#2.4.3)       
-[ (5)任意个元素(flex)](#2.5)       
-[三、水平垂直居中](#3)       
-[ (1)图片](#3.1)       
-[ (2)table-cell](#3.2)       
-[ (3)button作为父元素](#3.3)       
-[ (4)绝对定位](#3.4)       
-[ (5)绝对居中](#3.5)       
-[ (6)flex](#3.6)       
-[ (7)视窗居中](#3.7)       
-[ 相关好文推荐:](#3.8)       
-[四、两列布局](#4)       
-[ 4.1 左列定宽,右列自适应](#4.1)       
-[ --(1)利用float+margin实现](#4.1.1)       
-[ --(2)利用float+margin(fix)实现](#4.1.2)       
-[ --(3)使用float+overflow实现](#4.1.3)       
-[ --(4)使用table实现](#4.1.4)       
-[ --(5)使用绝对定位实现](#4.1.5)       
-[ --(6)使用flex实现](#4.1.6)       
-[ --(7)使用Grid实现](#4.1.7)       
-[ 4.2 左列自适应,右列定宽](#4.2)       
-[ --(1)使用float+margin实现](#4.2.1)       
-[ --(2)使用float+overflow实现](#4.2.2)       
-[ --(3)使用table实现](#4.2.3)       
-[ --(4)使用绝对定位实现](#4.2.4)       
-[ --(5)使用flex实现](#4.2.5)       
-[ --(6)使用Grid实现](#4.2.6)       
-[ 4.3 一列不定,一列自适应](#4.3)       
-[ --(1)使用float+overflow实现](#4.3.1)       
-[ --(2)使用flex实现](#4.3.2)       
-[ --(3)使用Grid实现](#4.3.3)            
-[五、三列布局](#5)            
-[ 5.1 两列定宽,一列自适应](#5.1)            
-[ --(1)使用float+margin实现](#5.1.1)            
-[ --(2)使用float+overflow实现](#5.1.2)            
-[ --(3)使用table实现](#5.1.3)            
-[ --(4)使用flex实现](#5.1.4)            
-[ --(5)使用Grid实现](#5.1.5)            
-[ 5.2 两侧定宽,中间自适应](#5.2)            
-[ 5.2.1 双飞翼布局方法](#5.2.1)            
-[ 5.2.2 圣杯布局方法](#5.2.2)            
-[ 5.2.3 使用Grid实现](#5.2.3)            
-[ 5.2.4 其他方法](#5.2.4)            
-[ --(1)使用table实现](#5.2.4.1)            
-[ --(2)使用flex实现](#5.2.4.2)            
-[ --(3)使用position实现](#5.2.4.3)            
-[六、多列布局](#6)            
-[ 6.1 等宽布局](#6.1)       
-[ 6.1.1四列等宽](#6.1.1)       
-[ --(1)使用float实现](#6.1.1.1)       
-[ --(2)使用table实现](#6.1.1.2)       
-[ --(3)使用flex实现](#6.1.1.3)       
-[ 6.1.2多列等宽](#6.1.2)       
-[ --(1)使用float实现](#6.1.2.1)       
-[ --(2)使用table实现](#6.1.2.2)       
-[ --(3)使用flex实现](#6.1.2.3)       
-[ --(4)使用Grid实现](#6.1.2.4)       
-[ 6.2 九宫格布局](#6.2)       
-[ --(1)使用table实现](#6.2.1)       
-[ --(2)使用flex实现](#6.2.2)       
-[ --(3)使用Grid实现](#6.2.3)       
-[ 6.3 栅格系统](#6.3)       
-[ --(1)用Less生成](#6.3.1)       
-[七、全屏布局](#7)       
-[ (1)使用绝对定位实现](#7.1)         
-[ (2)使用flex实现](#7.2)         
-[ (3)使用Grid实现](#7.3)         
-[八、网站实例布局分析：](#8)         
-[ 8.1 小米官网](#8.1)         
-[ 8.1.1 兼容IE9+的方法](#8.1.1)         
-[ --(1)页面整体](#8.1.1.1)         
-[ --(2)局部——header](#8.1.1.2)         
-[ --(3)局部——top](#8.1.1.3)         
-[ --(4)局部——center](#8.1.1.4)         
-[ --(5)局部——bottom](#8.1.1.5)         
-[ --(6)局部——footer](#8.1.1.6)         
-[ --(7)全部代码(优化后)](#8.1.1.7)         
-[ 8.1.2 Flexbox+Grid搭配用法(未来...)](#8.1.2)         
-[九、其他补充：](#9)         
-[ 9.1 移动端viewport](#9.1)         
-[ --设置viewport：](#9.1.1)         
-[ --阅读推荐：](#9.1.2)         
-[ 9.2 媒体查询](#9.2)         
-[ --代码示例：](#9.2.1)         
-[ --阅读推荐：](#9.2.2)         
-[ 9.3 REM](#9.3)         
-[ --阅读推荐：](#9.3.1)         
-[ 9.4 Flexbox](#9.4)         
-[ --阅读推荐：](#9.4.1)         
-[ 9.5 CSS Grid](#9.5)         
-[ --阅读推荐：](#9.5.1)         
-[End：感谢](#99)         
-        
-        
-        
 
-<h3 id='1'> 一、水平居中 </h3>
+注：PC端推荐用法前面加▲，至于移动端在兼容性允许的情况下优先考虑flex
+
+[TOC]
+
+
+
+### 一、水平居中
 
 *一,二,三章都是parent+son的简单结构,html代码和效果图就不贴出来了,第四章以后才有*
 
-<h5 id='1.1'> (1)文本/行内元素/行内块级元素 </h5>
+##### (1)文本/行内元素/行内块级元素
 
 ```
 #parent{
@@ -135,7 +33,7 @@
 
 
 
-<h5 id='1.2'> (2)单个块级元素 </h5>
+#####(2)单个块级元素
 
 ```
 #son{
@@ -146,7 +44,7 @@
 
 
 
-<h5 id='1.3'> (3)多个块级元素 </h5>
+##### (3)多个块级元素
 
 ```
 #parent{
@@ -159,7 +57,7 @@
 
 
 
-<h5 id='1.4'> (4)使用绝对定位实现 </h5>
+##### (4)使用绝对定位实现
 
 ```
 #parent{
@@ -176,7 +74,7 @@
 
 
 
-<h5 id='1.5'> (5)任意个元素(flex) </h5>
+##### (5)任意个元素(flex)
 
 ```
 #parent{
@@ -187,11 +85,11 @@
 
 
 
-<h3 id='2'> 二、垂直居中 </h3>
+### 二、垂直居中
 
 *一,二,三章都是parent+son的简单结构,html代码和效果图就不贴出来了,第四章以后才有*
 
-<h5 id='2.1'> (1)单行文本/行内元素/行内块级元素 </h5>
+##### (1)单行文本/行内元素/行内块级元素
 
 ```
 #parent{
@@ -202,7 +100,7 @@
 
 
 
-<h5 id='2.2'> (2)多行文本/行内元素/行内块级元素 </h5>
+##### (2)多行文本/行内元素/行内块级元素
 
 ```
 #parent{
@@ -213,7 +111,7 @@
 
 
 
-<h5 id='2.3'> (3)图片 </h5>
+##### (3)图片
 
 ```
 #parent{
@@ -227,7 +125,7 @@ img#son{
 
 
 
-<h5 id='2.4'> (4)单个块级元素 </h5>
+##### (4)单个块级元素
 
 html代码:
 
@@ -237,7 +135,7 @@ html代码:
 </div>
 ```
 
-<h6 id='2.4.1'> (4-1) 使用tabel-cell实现: </h6>
+###### (1) 使用tabel-cell实现:
 
 ```
 #parent{
@@ -246,7 +144,7 @@ html代码:
 }
 ```
 
-<h6 id='2.4.2'> (4-2) 使用绝对定位实现: </h6>
+###### (2) 使用绝对定位实现:
 
 ```
 #parent{
@@ -274,7 +172,7 @@ html代码:
 }
 ```
 
-<h6 id='2.4.3'> (4-3) 使用flex实现: </h6>
+###### (3) 使用flex实现:
 
 ```
 #parent{
@@ -303,7 +201,7 @@ html代码:
 
 
 
-<h5 id='2.5'> (5)任意个元素(flex) </h5>
+##### (5)任意个元素(flex)
 
 ```
 #parent{
@@ -331,11 +229,11 @@ html代码:
 
 
 
-<h3 id='3'> 三、水平垂直居中 </h3>
+### 三、水平垂直居中
 
 *一,二,三章都是parent+son的简单结构,html代码和效果图就不贴出来了,第四章以后才有*
 
-<h5 id='3.1'> (1)图片 </h5>
+##### (1)图片
 
 ```
 #parent{
@@ -350,7 +248,7 @@ img#son{
 
 
 
-<h5 id='3.2'> (2)table-cell </h5>
+##### (2)table-cell
 
 ```
 #parent{
@@ -369,7 +267,7 @@ img#son{
 
 
 
-<h5 id='3.3'> (3)button作为父元素 </h5>
+##### (3)button作为父元素
 
 ```
 button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动水平垂直居中*/
@@ -382,7 +280,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 
 
 
-<h5 id='3.4'> (4)绝对定位 </h5>
+##### (4)绝对定位
 
 ```
 #parent{
@@ -399,7 +297,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 
 
 
-<h5 id='3.5'> (5)绝对居中 </h5>
+##### (5)绝对居中
 
 ```
 #parent{
@@ -419,7 +317,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 
 
 
-<h5 id='3.6'> (6)flex </h5>
+##### (6)flex
 
 ```
 #parent{
@@ -450,7 +348,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 
 
 
-<h5 id='3.7'> (7)视窗居中 </h5>
+##### (7)视窗居中
 
 ```
 body#parent{
@@ -464,7 +362,7 @@ body#parent{
 
 
 
-<h5 id='3.8'> 相关好文推荐: </h5>
+##### 相关好文推荐:
 
 关于vertical-align和line-height的基友关系
 
@@ -472,15 +370,15 @@ http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-a
 
 
 
-<h3 id='4'> 四、两列布局 </h3>
+### 四、两列布局
 
-<h4 id='4.1'> 4.1 左列定宽,右列自适应 </h4>
+#### 4.1 左列定宽,右列自适应
 
 效果:
 
-![](https://user-gold-cdn.xitu.io/2018/3/9/1620a136d179e360?w=1129&h=627&f=png&s=14885)
+![](http://upload-images.jianshu.io/upload_images/8192053-fd94b0f6660e0a9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-<h5 id='4.1.1'> (1)利用float+margin实现 </h5>
+##### (1)利用float+margin实现
 
 html代码:
 
@@ -509,7 +407,7 @@ css代码:
 
 
 
-<h5 id='4.1.2'> (2)利用float+margin(fix)实现 </h5>
+##### (2)利用float+margin(fix)实现
 
 html代码:
 
@@ -545,7 +443,7 @@ css代码:
 
 
 
-<h5 id='4.1.3'> (3)使用float+overflow实现 </h5>
+##### ▲(3)使用float+overflow实现
 
 html代码:
 
@@ -572,9 +470,14 @@ css代码:
 }
 ```
 
+优缺点：
+
+- 优点：代码简单，容易理解，无需关注定宽的宽度，利用bfc达到自适应效果
+- 缺点：浮动脱离文档流，需要手动清除浮动，否则会产生高度塌陷；不支持ie6
 
 
-<h5 id='4.1.4'> (4)使用table实现 </h5>
+
+##### ▲(4)使用table实现
 
 html代码:
 
@@ -605,9 +508,14 @@ css代码:
 }
 ```
 
+优缺点：
+
+- 优点：代码简单，容易理解，无需关注定宽的宽度，利用单元格自动分配达到自适应效果
+- 缺点：margin失效；设置间隔比较麻烦；不支持ie8-
 
 
-<h5 id='4.1.5'> (5)使用绝对定位实现 </h5>
+
+##### (5)使用绝对定位实现
 
 html代码:
 
@@ -646,9 +554,9 @@ css代码:
 
 
 
-<h5 id='4.1.6'> (6)使用flex实现 </h5>
+##### (6)使用flex实现
 
-html代码:
+html代码：
 
 ```
 <body>
@@ -657,7 +565,6 @@ html代码:
     <div id="right">右列自适应</div>
 </div>
 </body>
-
 
 ```
 
@@ -677,12 +584,11 @@ css代码:
     flex: 1; /*均分了父元素剩余空间*/
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h5 id='4.1.7'> (7)使用Grid实现 </h5>
+##### (7)使用Grid实现
 
 html代码:
 
@@ -693,7 +599,6 @@ html代码:
     <div id="right">右列自适应</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -711,18 +616,17 @@ css代码:
 #right {
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h4 id='4.2'> 4.2 左列自适应,右列定宽 </h4>
+#### 4.2 左列自适应,右列定宽
 
 效果:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a136cf625c79?w=1102&h=728&f=png&s=17000)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-c62fee793ff890df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-<h5 id='4.2.1'> (1)使用float+margin实现 </h5>
+##### (1)使用float+margin实现
 
 html代码:
 
@@ -733,7 +637,6 @@ html代码:
     <div id="right">右列定宽</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -756,12 +659,11 @@ css代码:
     float: right;
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h5 id='4.2.2'> (2)使用float+overflow实现 </h5>
+##### ▲(2)使用float+overflow实现
 
 html代码:
 
@@ -772,7 +674,6 @@ html代码:
     <div id="left">左列自适应</div>   <!--顺序要换一下-->
 </div>
 </body>
-
 ```
 
 css代码:
@@ -790,12 +691,16 @@ css代码:
     height: 500px;
     background-color: #0f0;
 }
-
 ```
 
+优缺点：
+
+- 优点：代码简单，容易理解，无需关注定宽的宽度，利用bfc达到自适应效果
+- 缺点：浮动脱离文档流，需要手动清除浮动，否则会产生高度塌陷；不支持ie6
 
 
-<h5 id='4.2.3'> (3)使用table实现 </h5>
+
+##### ▲(3)使用table实现
 
 html代码:
 
@@ -806,7 +711,6 @@ html代码:
     <div id="right">右列定宽</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -826,12 +730,16 @@ css代码:
     background-color: #0f0;
     display: table-cell;
 }
-
 ```
 
+优缺点：
+
+- 优点：代码简单，容易理解，无需关注定宽的宽度，利用单元格自动分配达到自适应效果
+- 缺点：margin失效；设置间隔比较麻烦；不支持ie8-
 
 
-<h5 id='4.2.4'> (4)使用绝对定位实现 </h5>
+
+##### (4)使用绝对定位实现
 
 html代码:
 
@@ -842,7 +750,6 @@ html代码:
     <div id="right">右列定宽</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -867,12 +774,11 @@ css代码:
     width: 100px;
     height: 500px;
 }
-
 ```
 
 
 
-<h5 id='4.2.5'> (5)使用flex实现 </h5>
+##### (5)使用flex实现
 
 html代码:
 
@@ -883,7 +789,6 @@ html代码:
     <div id="right">右列定宽</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -901,12 +806,11 @@ css代码:
     width: 100px;
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h5 id='4.2.6'> (6)使用Grid实现 </h5>
+##### (6)使用Grid实现
 
 html代码:
 
@@ -917,7 +821,6 @@ html代码:
     <div id="right">右列定宽</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -934,24 +837,23 @@ css代码:
 #right {
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h4 id='4.3'> 4.3 一列不定,一列自适应 </h4>
+#### 4.3 一列不定,一列自适应
 
 (盒子宽度随着内容增加或减少发生变化,另一个盒子自适应)
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a136d1676e57?w=1102&h=732&f=png&s=17096)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-939d5de8570ac3a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 变化后:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a136d19c5afc?w=1102&h=728&f=png&s=17129)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-7a3e44050ff89cfd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-<h5 id='4.3.1'> (1)使用float+overflow实现 </h5>
+##### ▲(1)使用float+overflow实现
 
 html代码:
 
@@ -962,7 +864,6 @@ html代码:
     <div id="right">右列自适应</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -979,12 +880,16 @@ css代码:
     height: 500px;
     background-color: #0f0;
 }
-
 ```
 
+优缺点：
+
+- 优点：代码简单，容易理解，无需关注宽度，利用bfc达到自适应效果
+- 缺点：浮动脱离文档流，需要手动清除浮动，否则会产生高度塌陷；不支持ie6
 
 
-<h5 id='4.3.2'> (2)使用flex实现 </h5>
+
+##### (2)使用flex实现
 
 html代码:
 
@@ -995,7 +900,6 @@ html代码:
     <div id="right">右列自适应</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1014,12 +918,11 @@ css代码:
     background-color: #0f0;
     flex: 1;  /*均分#parent剩余的部分*/
 }
-
 ```
 
 
 
-<h5 id='4.3.3'> (3)使用Grid实现 </h5>
+##### (3)使用Grid实现
 
 html代码:
 
@@ -1030,7 +933,6 @@ html代码:
     <div id="right">右列自适应</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1049,7 +951,6 @@ css代码:
     height: 500px;
     background-color: #0f0;
 }
-
 ```
 
 
@@ -1058,15 +959,15 @@ css代码:
 
 
 
-<h3 id='5'> 五、三列布局 </h3>
+### 五、三列布局
 
-<h4 id='5.1'> 5.1 两列定宽,一列自适应 </h4>
+#### 5.1 两列定宽,一列自适应
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a136d1ea53c5?w=1102&h=732&f=png&s=17393)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-2a21c66c4dad4f56.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-<h5 id='5.1.1'> (1)使用float+margin实现 </h5>
+##### (1)使用float+margin实现
 
 html代码:
 
@@ -1078,7 +979,6 @@ html代码:
     <div id="right">右列自适应</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1105,12 +1005,11 @@ css代码:
     height: 500px;
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h5 id='5.1.2'> (2)使用float+overflow实现 </h5>
+##### ▲(2)使用float+overflow实现
 
 html代码:
 
@@ -1122,7 +1021,6 @@ html代码:
     <div id="right">右列自适应</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1150,12 +1048,16 @@ css代码:
     height: 500px;
     background-color: #0f0;
 }
-
 ```
 
+优缺点：
+
+- 优点：代码简单，容易理解，无需关注定宽的宽度，利用bfc达到自适应效果
+- 缺点：浮动脱离文档流，需要手动清除浮动，否则会产生高度塌陷；不支持ie6
 
 
-<h5 id='5.1.3'> (3)使用table实现 </h5>
+
+##### ▲(3)使用table实现
 
 html代码:
 
@@ -1167,7 +1069,6 @@ html代码:
     <div id="right">右列自适应</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1178,7 +1079,7 @@ css代码:
     height: 520px; /*抵消上下间距10*2的高度影响*/
     margin: -10px 0;  /*抵消上下边间距10的位置影响*/
     display: table;
-    /*左右两边间距大了一点,子元素改用padding设置盒子间距就没有这个问题*/
+    /*左右两边间距无法消除,子元素改用padding设置盒子间距就没有这个问题*/
     border-spacing: 10px;  /*关键!!!设置间距*/
 }
 #left {
@@ -1195,12 +1096,16 @@ css代码:
     display: table-cell;
     background-color: #0f0;
 }
-
 ```
 
+优缺点：
+
+- 优点：代码简单，容易理解，无需关注定宽的宽度，利用单元格自动分配达到自适应效果
+- 缺点：margin失效；设置间隔比较麻烦；不支持ie8-
 
 
-<h5 id='5.1.4'> (4)使用flex实现 </h5>
+
+##### (4)使用flex实现
 
 html代码:
 
@@ -1212,7 +1117,6 @@ html代码:
     <div id="right">右列自适应</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1236,12 +1140,11 @@ css代码:
     flex: 1;  /*均分#parent剩余的部分达到自适应*/
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h5 id='5.1.5'> (5)使用Grid实现 </h5>
+##### (5)使用Grid实现
 
 html代码:
 
@@ -1253,7 +1156,6 @@ html代码:
     <div id="right">右列自适应</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1275,20 +1177,19 @@ css代码:
 #right {
     background-color: #0f0;
 }
-
 ```
 
 
 
 
 
-<h4 id='5.2'> 5.2 两侧定宽,中间自适应 </h4>
+#### 5.2 两侧定宽,中间自适应
 
-<h5 id='5.2.1'> 5.2.1 双飞翼布局方法 </h5>
+##### 5.2.1 双飞翼布局方法
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a136d1cc24f8?w=1199&h=731&f=png&s=18776)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-0686025b23db6b21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码:
 
@@ -1306,7 +1207,6 @@ html代码:
 </div>
 <div id="footer"></div>
 </body>
-
 ```
 
 css代码:
@@ -1348,16 +1248,15 @@ css代码:
     height: 60px;
     background-color: #ccc;
 }
-
 ```
 
 
 
-<h5 id='5.2.2'> 5.2.2 圣杯布局方法 </h5>
+##### 5.2.2 圣杯布局方法
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a136f3b3a4aa?w=1115&h=732&f=png&s=17875)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-f0d306a6a14f995c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码:
 
@@ -1374,7 +1273,6 @@ html代码:
 </div>
 <div id="footer"></div>
 </body>
-
 ```
 
 css代码:
@@ -1421,16 +1319,15 @@ css代码:
     height: 60px;
     background-color: #ccc;
 }
-
 ```
 
 
 
-<h5 id='5.2.3'> 5.2.3 使用Grid实现 </h5>
+##### 5.2.3 使用Grid实现
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a136ee8a6109?w=1051&h=731&f=png&s=16800)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-25ca8c9933012eaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码:
 
@@ -1447,7 +1344,6 @@ html代码:
     <div id="footer"></div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1488,18 +1384,17 @@ css代码:
     grid-area: footer; /*指定在哪个网格区域*/
     background-color: #ccc;
 }
-
 ```
 
 
 
-<h5 id='5.2.4'> 5.2.4 其他方法 </h5>
+##### 5.2.4 其他方法
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a136f71b55c0?w=1140&h=735&f=png&s=18989)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-46d8a0755d510054.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-<h5 id='5.2.4.1'> (1)使用table实现 </h5>
+###### ▲(1)使用table实现
 
 html代码:
 
@@ -1511,7 +1406,6 @@ html代码:
     <div id="right">右列定宽</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1536,12 +1430,16 @@ css代码:
     width: 200px;
     background-color: #0f0;
 }
-
 ```
 
+优缺点：
+
+- 优点：代码简洁，容易理解；
+- 缺点：margin失效，采用border-spacing表格两边的间隔无法消除；不支持ie8-
 
 
-<h5 id='5.2.4.2'> (2)使用flex实现 </h5>
+
+###### (2)使用flex实现
 
 html代码:
 
@@ -1553,7 +1451,6 @@ html代码:
     <div id="right">右列定宽</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1575,12 +1472,11 @@ css代码:
     width: 200px;
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h5 id='5.2.4.3'> (3)使用position实现 </h5>
+###### ▲(3)使用position实现
 
 html代码:
 
@@ -1592,7 +1488,6 @@ html代码:
     <div id="right">右列定宽</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1623,24 +1518,26 @@ css代码:
     height: 500px;
     background-color: #0f0;
 }
-
 ```
 
+优缺点：
+
+- 优点：容易理解，兼容性比较好
+- 缺点：需手动计算宽度确定边距；脱离文档流；代码繁多
 
 
 
+### 六、多列布局
 
-<h3 id='6'> 六、多列布局 </h3>
+#### 6.1 等宽布局
 
-<h4 id='6.1'> 6.1 等宽布局 </h4>
+##### 6.1.1四列等宽
 
-<h5 id='6.1.1'> 6.1.1 四列等宽 </h5>
-
-<h5 id='6.1.1.1'> (1)使用float实现 </h5>
+###### ▲(1)使用float实现
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a136f835236f?w=1086&h=730&f=png&s=20472)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-42a873df4f47ce3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码:
 
@@ -1653,7 +1550,6 @@ html代码:
     <div class="column">4 <p>我是文字我是文字我输文字我是文字我是文字</p></div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1677,16 +1573,20 @@ css代码:
 .column:nth-child(even){
     background-color: #0f0;
 }
-
 ```
 
+优缺点：
+
+- 优点：代码简单，容易理解；兼容性较好
+- 缺点：需要手动清除浮动，否则会产生高度塌陷
 
 
-<h5 id='6.1.1.2'> (2)使用table实现 </h5>
+
+###### ▲(2)使用table实现
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a136ffc5df62?w=1086&h=730&f=png&s=21879)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-15a9115172a70780.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码:
 
@@ -1699,7 +1599,6 @@ html代码:
     <div class="column">4 <p>我是文字我是文字我输文字我是文字我是文字</p></div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1709,7 +1608,7 @@ css代码:
     height: 540px;  /*抵消上下边20*2间距的高度影响*/
     display: table;
     margin: -20px 0;  /*抵消上下边20*2间距的位置影响*/
-    /*两边离页面间距较大,改用子元素设置padding来当成间隔就不会有这样的问题*/
+    /*两边离页面间距无法消除,改用子元素设置padding来当成间隔就不会有这样的问题*/
     border-spacing: 20px;  /*设置间距*/
 }
 .column{
@@ -1721,16 +1620,20 @@ css代码:
 .column:nth-child(even){
     background-color: #0f0;
 }
-
 ```
 
+优缺点：
+
+- 优点：代码简单，容易理解；无需关注宽度，单元格自动等分
+- 缺点：margin失效；设置间隔比较麻烦；不支持ie8-
 
 
-<h5 id='6.1.1.3'> (3)使用flex实现 </h5>
+
+###### (3)使用flex实现
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a137025dbc4c?w=1106&h=732&f=png&s=20798)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-c27343774b8ca479.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码:
 
@@ -1743,7 +1646,6 @@ html代码:
     <div class="column">4 <p>我是文字我是文字我输文字我是文字我是文字</p></div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1764,18 +1666,17 @@ css代码:
 .column:nth-child(even){
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h5 id='6.1.2'> 多列等宽 </h5>
+##### 6.1.2多列等宽
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a137120f99b7?w=1051&h=732&f=png&s=24254)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-3f89a669a16b57af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-<h5 id='6.1.2.1'> (1)使用float实现 </h5>
+###### ▲(1)使用float实现
 
 html代码:
 
@@ -1790,7 +1691,6 @@ html代码:
     <div class="column">6 <p>我是文字我是文字我输文字我是文字我是文字</p></div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1810,12 +1710,16 @@ css代码:
 .column:nth-child(even){
     background-color: #0f0;
 }
-
 ```
 
+优缺点：
+
+- 优点：代码简单，容易理解；兼容性较好
+- 缺点：需要手动清除浮动，否则会产生高度塌陷
 
 
-<h5 id='6.1.2.2'> (2)使用table实现 </h5>
+
+###### ▲(2)使用table实现
 
 html代码
 
@@ -1830,7 +1734,6 @@ html代码
     <div class="column">6 <p>我是文字我是文字我输文字我是文字我是文字</p></div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1850,12 +1753,16 @@ css代码:
 .column:nth-child(even){
     background-color: #0f0;
 }
-
 ```
 
+优缺点：
+
+- 优点：代码简单，容易理解；无需关注宽度。单元格自动等分
+- 缺点：margin失效；设置间隔比较麻烦；不兼容ie8-
 
 
-<h5 id='6.1.2.3'> (3)使用flex实现 </h5>
+
+###### (3)使用flex实现
 
 html代码:
 
@@ -1870,7 +1777,6 @@ html代码:
     <div class="column">6 <p>我是文字我是文字我输文字我是文字我是文字</p></div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1889,12 +1795,11 @@ css代码:
 .column:nth-child(even){
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h5 id='6.1.2.4'> (4)使用Grid实现 </h5>
+###### (4)使用Grid实现
 
 html代码:
 
@@ -1909,7 +1814,6 @@ html代码:
     <div class="column">6 <p>我是文字我是文字我输文字我是文字我是文字</p></div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1927,18 +1831,17 @@ css代码:
 .column:nth-child(even){
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h4 id='6.2'> 6.2 九宫格布局 </h4>
+#### 6.2 九宫格布局
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a1371229c1cb?w=1240&h=636&f=png&s=18012)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-9b84a6ec67e9df68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-<h5 id='6.2.1'> (1)使用table实现 </h5>
+##### ▲(1)使用table实现
 
 html代码:
 
@@ -1962,7 +1865,6 @@ html代码:
     </div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -1981,12 +1883,16 @@ css代码:
     border: 1px solid #000;
     display: table-cell;
 }
-
 ```
 
+优缺点：
+
+- 优点：代码简洁，容易理解；
+- 缺点：margin失效，采用border-spacing表格两边的间隔无法消除；不支持ie8-
 
 
-<h5 id='6.2.2'> (2)使用flex实现 </h5>
+
+##### (2)使用flex实现
 
 html代码:
 
@@ -2010,7 +1916,6 @@ html代码:
     </div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -2031,12 +1936,11 @@ css代码:
     flex: 1;
     border: 1px solid #000;
 }
-
 ```
 
 
 
-<h5 id='6.2.3'> (3)使用Grid实现 </h5>
+##### (3)使用Grid实现
 
 *CSS Grid非常强大,可以实现各种各样的三维布局,可查阅本文结尾的阅读推荐*
 
@@ -2056,7 +1960,6 @@ html代码:
     <div class="item">9</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -2073,16 +1976,19 @@ css代码:
 .item {
     border: 1px solid #000;
 }
-
 ```
 
 
 
-<h4 id='6.3'> 6.3 栅格系统 </h4>
+#### ▲6.3 栅格系统
 
-**参考boostrap的12列,实现方法并不是完全一样!!!**
+优缺点：
 
-<h5 id='6.3.1'> (1)用Less生成 </h5>
+- 优点：代码简洁，容易理解；提高页面内容的流动性，能适应多种设备；
+
+  ​
+
+##### (1)用Less生成
 
 ```
 /*生成栅格系统*/
@@ -2149,18 +2055,17 @@ div[class^="column-xs-"]{
 div[class^="column-sm-"]{
 	float: left;
 }
-
 ```
 
 
 
-<h3 id='7'> 七、全屏布局 </h3>
+### 七、全屏布局
 
 效果图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a13716f2d8c3?w=1237&h=726&f=png&s=16581)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-3799af31d5b12f66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-<h5 id='7.1'> (1)使用绝对定位实现 </h5>
+##### ▲(1)使用绝对定位实现
 
 html代码:
 
@@ -2173,7 +2078,6 @@ html代码:
     <div id="bottom">bottom</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -2212,12 +2116,16 @@ html, body, #parent {height: 100%;overflow: hidden;}
     bottom: 0;
     height: 50px;
 }
-
 ```
 
+优缺点：
+
+- 优点：容易理解
+- 缺点：代码繁多；需要计算好各个盒子的宽高；
 
 
-<h5 id='7.2'> (2)使用flex实现 </h5>
+
+##### (2)使用flex实现
 
 html代码:
 
@@ -2232,7 +2140,6 @@ html代码:
     <div id="bottom">bottom</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -2266,12 +2173,11 @@ html,body,#parent{
     flex: 1;
     overflow: auto;
 }
-
 ```
 
 
 
-<h5 id='7.3'> (3)使用Grid实现 </h5>
+##### (3)使用Grid实现
 
 html代码:
 
@@ -2284,7 +2190,6 @@ html代码:
     <div id="bottom">bottom</div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -2326,26 +2231,25 @@ html, body, #parent {
 #bottom{
     grid-area: footer;  /*指定在哪个网格区域*/
 }
-
 ```
 
 
 
-<h3 id='8'> 八、网站实例布局分析： </h3>
+### 八、网站实例布局分析：
 
 由于方法众多,分析的时候想到哪种用哪种了，只要IE9和谷歌上表现一致，我就不一一测试其他浏览器了，如果有什么问题或意见，请留言！
 
-<h4 id='8.1'> 8.1 小米官网 </h4>
+#### 8.1 小米官网
 
 https://www.mi.com/  
 
-<h5 id='8.1.1'> 8.1.1 兼容IE9+的方法 </h5>
+##### 8.1.1 兼容IE9+的方法
 
-<h5 id='8.1.1.1'> (1)页面整体 </h5>
+###### (1)页面整体
 
 整个页面我们可以分成顶、上、中、下、底五个结构,如图所示:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a137243cef07?w=1240&h=5010&f=png&s=2017863)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-57bff8421d30203c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码:
 
@@ -2357,7 +2261,6 @@ html代码:
 <div class="bottom"></div>
 <div class="footer"></div>
 </body>
-
 ```
 
 css代码:
@@ -2398,16 +2301,15 @@ body{
     height: 166px;
     border: 1px solid #000;
 }
-
 ```
 
 
 
-<h5 id='8.1.1.2'> (2)局部——header </h5>
+###### (2)局部——header
 
 header部分首先是一个水平居中的内容，内容盒子可以分成左右两个部分，如图所示：
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a1372efcf139?w=1240&h=42&f=png&s=2923)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-ba862bad07374f50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码：
 
@@ -2418,7 +2320,6 @@ html代码：
         <div class="header-rigth"></div>
     </div>
 </div>
-
 ```
 
 css代码：
@@ -2442,16 +2343,15 @@ css代码：
     float: right;
     background-color: #0f0;
 }
-
 ```
 
 
 
-<h5 id='8.1.1.3'> (3)局部——top </h5>
+###### (3)局部——top
 
 top部分先有一个水平居中的内容，再就是内容由上到下可以分成四个部分，然后每个部分再细分......说不下去了，直接上图：
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a1373121044d?w=1240&h=755&f=png&s=465253)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-840150b8bf22e1dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码：
 
@@ -2486,7 +2386,6 @@ html代码：
         </div>
     </div>
 </div>
-
 ```
 
 css代码：
@@ -2578,20 +2477,19 @@ css代码：
 .content-shops > li+li {
     margin-left: 12.5px;
 }
-
 ```
 
 
 
-<h5 id='8.1.1.4'> (4)局部——center </h5>
+###### (4)局部——center
 
 center部分都是一些单元格展示,有很多类似的模块,就挑几个来实现了，直接看图吧：
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a13734239fca?w=1103&h=602&f=png&s=238410)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-d59135f1c44851ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a1373825a330?w=1233&h=687&f=png&s=297139)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-ede092a93eb2d3ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a137421eddba?w=1240&h=358&f=png&s=282539)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-6c785acd3ec2ef3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码：
 
@@ -2643,7 +2541,6 @@ html代码：
         </ul>
     </div>
 </div>
-
 ```
 
 css代码：
@@ -2757,16 +2654,15 @@ css代码：
 .video-content>li+li{
     margin-left: 14px;
 }
-
 ```
 
 
 
-<h5 id='8.1.1.5'> (5)局部——bottom </h5>
+###### (5)局部——bottom
 
 bottom部分首先是一个水平居中的内容,然后内容可以划分为上下两部分,每个部分都是浮动的li,如图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a1374b14d7d6?w=1240&h=220&f=png&s=58313)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-e941e3643bb33035.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码:
 
@@ -2797,7 +2693,6 @@ html代码:
         </div>
     </div>
 </div>
-
 ```
 
 css代码:
@@ -2860,16 +2755,15 @@ css代码:
     height: 100%;
     background-color: yellow;
 }
-
 ```
 
 
 
-<h5 id='8.1.1.6'> (6)局部——footer </h5>
+###### (6)局部——footer
 
 footer划分如图:
 
-![image.png](https://user-gold-cdn.xitu.io/2018/3/9/1620a13756dfa54f?w=1240&h=143&f=png&s=63096)
+![image.png](http://upload-images.jianshu.io/upload_images/8192053-40d0bfb73b4660ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 html代码:
 
@@ -2881,7 +2775,6 @@ html代码:
     </div>
     <div class="footer-slogan"></div>
 </div>
-
 ```
 
 css代码:
@@ -2915,12 +2808,11 @@ css代码:
     height: 19px;
     background-color: #8545e0;
 }
-
 ```
 
 
 
-<h5 id='8.1.1.7'> (7)全部代码(优化后) </h5>
+###### (7)全部代码(优化后)
 
 html代码:
 
@@ -3043,7 +2935,6 @@ html代码:
     <div class="footer-slogan"></div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -3332,14 +3223,13 @@ body {
     height: 19px;
     background-color: #8545e0;
 }
-
 ```
 
-以上就是优化后的代码了，由于在下才疏学浅，所用方法不敢保证是最简单的，优化也肯定不是最优的，仅仅是的我的一种思路而已，各位参考参考就好。
+以上就是优化后的全部代码了，由于在下才疏学浅，所用方法仅仅是其中一种思路而已，至于够不够简单，优化怎么样，各位参考参考就好。
 
 
 
-<h5 id='8.1.2'> 8.1.2 Flexbox+Grid搭配用法(未来...) </h5>
+##### 8.1.2 Flexbox+Grid搭配用法(未来...)
 
 html代码:
 
@@ -3448,7 +3338,6 @@ html代码:
     <div class="footer-slogan"></div>
 </div>
 </body>
-
 ```
 
 css代码:
@@ -3701,27 +3590,25 @@ body {
     height: 19px;
     background-color: #8545e0;
 }
-
 ```
 
 
 
 
 
-<h3 id='9'> 九、其他补充： </h3>
+### 九、其他补充：
 
-<h4 id='9.1'> 9.1 移动端viewport </h4>
+#### 9.1 移动端viewport
 
-<h5 id='9.1.1'> 设置viewport：</h5>
+##### 设置viewport：
 
 ```
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
 ```
 
 
 
-<h5 id='9.1.2'> 阅读推荐： </h5>
+##### 阅读推荐：
 
 解读 viewport—网页自适应移动 app 神器
 
@@ -3731,21 +3618,20 @@ https://juejin.im/entry/58e750a02f301e0062367ded
 
 
 
-<h4 id='9.2'> 9.2 媒体查询 </h4>
+#### 9.2 媒体查询
 
-<h5 id='9.2.1'> 代码示例: </h5>
+##### 代码示例：
 
 ```
 @media (max-width: 767px) { ...css代码... }
 @media (min-width: 768px) and (max-width: 991px) { ...css代码... }
 @media (min-width: 992px) and (max-width: 1199px) { ...css代码... }
 @media (min-width: 1200px) { ...css代码... }
-
 ```
 
 
 
-<h5 id='9.2.2'> 阅读推荐: </h5>
+##### 阅读推荐：
 
 MDN文档介绍
 
@@ -3757,9 +3643,9 @@ https://juejin.im/entry/595b6208f265da6c3902041e
 
 
 
-<h4 id='9.3'> 9.3 REM </h4>
+#### 9.3 REM
 
-<h5 id='9.3.1'> 阅读推荐: </h5>
+##### 阅读推荐：
 
 Rem布局的原理解析
 
@@ -3771,9 +3657,9 @@ http://caibaojian.com/web-app-rem.html
 
 
 
-<h4 id='9.4'> 9.4 Flexbox </h4>
+#### 9.4 Flexbox
 
-<h5 id='9.4.1'> 阅读推荐 </h5>
+##### 阅读推荐：
 
 理解Flexbox：你需要知道的一切
 
@@ -3785,9 +3671,9 @@ https://www.w3cplus.com/css3/flexbox-layout-and-calculation.html?from=groupmessa
 
 
 
-<h4 id='9.5'> 9.5 CSS Grid </h4>
+#### 9.5 CSS Grid 
 
-<h5 id='9.5.1'> 阅读推荐 </h5>
+##### 阅读推荐：
 
 grid布局学习指南
 
@@ -3801,7 +3687,7 @@ https://drafts.csswg.org/css-grid/
 
 
 
-<h3 id='99'> End：感谢 </h3>
+### End：感谢
 
 **感谢大家阅读，喜欢的就点个收藏或者Star吧！各位的支持，就是本人的最大动力，谢谢！**
 
