@@ -35,7 +35,7 @@
 优缺点
 
 - 优点：简单快捷，容易理解，兼容性非常好
-- 缺点：只对行内内容有效；属性会继承影响到后代行内内容；如果子元素宽度大于父元素宽度则无效，只有后代行内内容中宽度小于设置text-align属性的元素宽度的时候，才会水平居中
+- 缺点：只对行内内容有效；属性会继承影响到后代行内内容；如果子元素宽度大于父元素宽度则无效，但是后代行内内容中宽度小于设置text-align属性的元素宽度的时候，也会继承水平居中
 
 
 
@@ -156,10 +156,10 @@
 原理同上
 
 ```
-#parent{  /*或者用span把所有文字包裹起来，设置display：inline-block转换成图片的方式解决*/
-    height: 150px;
-    line-height: 30px;  /*元素在页面呈现为5行,则line-height的值为height/5*/
-}
+    #parent{  /*或者用span把所有文字包裹起来，设置display：inline-block转换成图片的方式解决*/
+        height: 150px;
+        line-height: 30px;  /*元素在页面呈现为5行,则line-height的值为height/5*/
+    }
 ```
 
 优缺点
@@ -185,7 +185,7 @@ img#son{vertical-align: middle;} /*默认是基线对齐，改为middle*/
 优缺点
 
 - 优点：简单；兼容性好
-- 缺点：需要添加`font-size: 0;` 才可以完全的垂直居中；不过需要主要，html#parent包裹img之间需要有换行或空格
+- 缺点：需要添加`font-size: 0;` 才可以完全的垂直居中；不过需要注意html中#parent包裹img之间需要有换行或空格；熟悉`line-height `和`vertical-align`的基友关系较难
 
 
 
@@ -201,7 +201,7 @@ html代码:
 
 ##### (1) 使用tabel-cell实现:
 
-原理：CSS Table，使表格内容对齐方式为middle
+原理：CSS Table，使表格内容垂直对齐方式为middle
 
 ```
 #parent{
@@ -239,7 +239,7 @@ html代码:
 
 或
 
-/*原理：当top、bottom为0时,margin-top&bottom会无限延伸占满空间并且平分*/
+/*原理：当top、bottom为0时,margin-top&bottom设置auto的话会无限延伸占满空间并且平分*/
 #parent{position: relative;}
 #son{
     position: absolute;
@@ -284,7 +284,7 @@ html代码:
 
 
 
-##### (4)任意个元素(flex)
+#### (5)任意个元素(flex)
 
 原理：flex设置对齐方式罢了，请查阅文末flex阅读推荐
 
@@ -330,20 +330,33 @@ html代码:
 
 *一,二,三章都是parent+son的简单结构,html代码和效果图就不贴出来了,第四章以后才有*
 
-#### (1)图片
+#### (1)行内/行内块级/图片▲
+
+原理：`text-align: center;` 控制行内内容相对于块父元素水平居中,然后就是`line-height `和`vertical-align`的基友关系使其垂直居中，`font-size: 0;` 是为了消除近似居中的bug
 
 ```
 #parent{
     height: 150px;
     line-height: 150px;  /*行高的值与height相等*/
     text-align: center;
+    font-size: 0;   /*消除幽灵空白节点的bug*/
 }
-img#son{vertical-align: middle;}
+#son{
+    /*display: inline-block;*/  /*如果是块级元素需改为行内或行内块级才生效*/
+    vertical-align: middle;
+}
 ```
+
+优缺点
+
+- 优点：代码简单；兼容性好
+- 缺点：只对行内内容有效；需要添加`font-size: 0;` 才可以完全的垂直居中；不过需要注意html中#parent包裹#son之间需要有换行或空格；熟悉`line-height `和`vertical-align`的基友关系较难
 
 
 
 #### (2)table-cell
+
+原理：CSS Table，使表格内容垂直对齐方式为middle,然后根据是行内内容还是块级内容采取不同的方式达到水平居中
 
 ```
 #parent{
@@ -360,22 +373,39 @@ img#son{vertical-align: middle;}
 }
 ```
 
+优缺点
+
+- 优点：简单；宽高不定；兼容性好（ie8+）
+- 缺点：设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
+
 
 
 #### (3)button作为父元素
 
+原理：button的默认样式，再把需要居中的元素表现形式改为行内或行内块级就好
+
 ```
-button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动水平垂直居中*/
+button#parent{  /*改掉button默认样式就好了,不需要居中处理*/
     height: 150px;
     width: 200px;
     outline: none;  
-    background-color: #fff;
+    border: none;
+}
+#son{
+    display: inline-block; /*button自带text-align: center,改为行内水平居中生效*/
 }
 ```
 
+优缺点
+
+- 优点：简单方便，充分利用默认样式
+- 缺点：只适用于行内内容；需要清除部分默认样式；水平垂直居中兼容性很好，但是ie下点击会有凹陷效果！
 
 
-#### (4)绝对定位
+
+#### (4)绝对定位▲
+
+原理：子绝父相，top、right、bottom、left的值是相对于父元素尺寸的，然后margin或者transform是相对于自身尺寸的，组合使用达到几何上的水平垂直居中
 
 ```
 #parent{position: relative;}
@@ -388,9 +418,16 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 }
 ```
 
+优缺点
+
+- 优点：使用margin兼容性好；不管是块级还是行内元素都可以实现
+- 缺点：代码较多；脱离文档流；使用margin需要知道宽高；使用transform兼容性不好（ie9+）
 
 
-#### (5)绝对居中
+
+#### (5)绝对居中▲
+
+原理：当top、bottom为0时,margin-top&bottom设置auto的话会无限延伸占满空间并且平分；当left、right为0时,margin-left&right设置auto的话会无限延伸占满空间并且平分
 
 ```
 #parent{position: relative;}
@@ -406,9 +443,16 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 }
 ```
 
+优缺点
+
+- 优点：无需关注宽高；兼容性较好(ie8+)
+- 缺点：代码较多；脱离文档流
+
 
 
 #### (6)flex
+
+原理：flex设置对齐方式罢了，请查阅文末flex阅读推荐
 
 ```
 #parent{display: flex;}
@@ -431,19 +475,38 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 #son{align-self: center;}
 ```
 
+优缺点
+
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+
 
 
 #### (7)视窗居中
 
+原理：vh为视口单位，视口即文档可视的部分，50vh就是视口高度的50/100，设置50vh上边距再
+
 ```
-body#parent{}
 #son{
-    margin: 50vh auto 0;
+	/*0如果去掉，则会多出滚动条并且上下都是50vh的margin。如果去掉就给body加上overflow:hidden;*/
+    margin: 50vh auto 0;  
     transform: translateY(-50%);
 }
 ```
 
+优缺点
 
+- 优点：简单；容易理解；两句代码达到屏幕水平垂直居中
+- 缺点：兼容性不好（ie9+，Android4.4+）
+
+
+
+#### ★本章小结：
+
+- 一般情况下，水平垂直居中，我们最常用的就是绝对定位加负边距了，缺点就是需要知道宽高，使用transform倒是可以不需要，但是兼容性不好（ie9+）； 
+- 其次就是绝对居中，绝对定位设置top、left、right、bottom为0，然后`margin:auto;` 让浏览器自动平分边距以达到水平垂直居中的目的；
+- 如果是行内/行内块级/图片这些内容，可以优先考虑`line-height`和`vertical-align` 结合使用，不要忘了还有`text-align` ，这个方法代码其实不多，就是理解原理有点困难，想要熟练应对各种情况还需好好研究；
+- 移动端兼容性允许的情况下能用flex就用flex
 
 
 
@@ -2252,7 +2315,7 @@ https://www.mi.com/
 
 ###### (1)页面整体
 
-整个页面我们可以分成顶、上、中、下、底五个结构,如图所示:
+经过测试，小米PC端官网不是整个页面我们可以分成顶、上、中、下、底五个结构,如图所示:
 
 ![image.png](http://upload-images.jianshu.io/upload_images/8192053-57bff8421d30203c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
