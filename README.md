@@ -122,7 +122,10 @@
 #### ★本章小结：
 
 - 对于水平居中，我们应该先考虑，哪些元素有自带的居中效果，最先想到的应该就是 `text-align:center` 了，但是这个只对行内内容有效，所以我们要使用 `text-align:center` 就必须将子元素设置为 `display: inline;` 或者 `display: inline-block;` ； 
-- 其次就是考虑能不能用`margin: 0 auto;` ，因为这都是一两句代码能搞定的事，实在不行就是用绝对定位去实现了。移动端能用flex就用flex，简单方便，灵活并且功能强大，无愧为网页布局的一大利器！
+- 其次就是考虑能不能用`margin: 0 auto;` ，因为这都是一两句代码能搞定的事，实在不行就是用绝对定位去实现了。
+- 移动端能用flex就用flex，简单方便，灵活并且功能强大，无愧为网页布局的一大利器！
+
+
 
 
 
@@ -130,7 +133,9 @@
 
 *一,二,三章都是parent+son的简单结构,html代码和效果图就不贴出来了,第四章以后才有*
 
-##### (1)单行文本/行内元素/行内块级元素
+#### (1)单行文本/行内元素/行内块级元素▲
+
+原理：line-height的最终表现是通过inline box实现的，而无论inline box所占据的高度是多少（无论比文字大还是比文字小），其占据的空间都是与文字内容公用水平中垂线的。
 
 ```
 #parent{
@@ -139,32 +144,52 @@
 }
 ```
 
+优缺点
+
+- 优点：简单；兼容性好
+- 缺点：只能用于单行行内内容；要知道高度的值
 
 
-##### (2)多行文本/行内元素/行内块级元素
+
+#### (2)多行文本/行内元素/行内块级元素
+
+原理同上
 
 ```
-#parent{
+#parent{  /*或者用span把所有文字包裹起来，设置display：inline-block转换成图片的方式解决*/
     height: 150px;
     line-height: 30px;  /*元素在页面呈现为5行,则line-height的值为height/5*/
 }
 ```
 
+优缺点
+
+- 优点：简单；兼容性好
+- 缺点：只能用于行内内容；需要知道高度和最终呈现多少行来计算出line-height的值，建议用span包裹多行文本
 
 
-##### (3)图片
+
+#### (3)图片▲
+
+原理：[vertical-align和line-height的基友关系](http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/)
 
 ```
 #parent{
     height: 150px;
     line-height: 150px;
+    font-size: 0;
 }
-img#son{vertical-align: middle;}
+img#son{vertical-align: middle;} /*默认是基线对齐，改为middle*/
 ```
 
+优缺点
+
+- 优点：简单；兼容性好
+- 缺点：需要添加`font-size: 0;` 才可以完全的垂直居中；不过需要主要，html#parent包裹img之间需要有换行或空格
 
 
-##### (4)单个块级元素
+
+#### (4)单个块级元素
 
 html代码:
 
@@ -174,7 +199,9 @@ html代码:
 </div>
 ```
 
-###### (1) 使用tabel-cell实现:
+##### (1) 使用tabel-cell实现:
+
+原理：CSS Table，使表格内容对齐方式为middle
 
 ```
 #parent{
@@ -183,33 +210,55 @@ html代码:
 }
 ```
 
-###### (2) 使用绝对定位实现:
+优缺点
+
+- 优点：简单；宽高不定；兼容性好（ie8+）
+- 缺点：设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
+
+
+
+##### (2) 使用绝对定位实现:▲
 
 ```
+/*原理：子绝父相，top、right、bottom、left的值是相对于父元素尺寸的，然后margin或者transform是相对于自身尺寸的，组合使用达到水平居中的目的*/
 #parent{
     height: 150px;
-    position: relative;
+    position: relative;  /*父相*/
 }
 #son{
-    position: absolute;  /*子绝父相*/
+    position: absolute;  /*子绝*/
     top: 50%;  /*父元素高度一半,这里等同于top:75px;*/
     transform: translateY(-50%);  /*自身高度一半,这里等同于margin-top:-25px;*/
     height: 50px;
 }
 
+/*优缺点
+- 优点：使用margin-top兼容性好；不管是块级还是行内元素都可以实现
+- 缺点：代码较多；脱离文档流；使用margin-top需要知道高度值；使用transform兼容性不好（ie9+）*/
+
+
 或
 
+/*原理：当top、bottom为0时,margin-top&bottom会无限延伸占满空间并且平分*/
 #parent{position: relative;}
 #son{
     position: absolute;
-    margin: auto;
+    margin: auto 0;
     top: 0;
     bottom: 0;
     height: 50px;
 }
+
+/*优缺点
+- 优点：简单;兼容性较好(ie8+)
+- 缺点：脱离文档流*/
 ```
 
-###### (3) 使用flex实现:
+
+
+##### (3) 使用flex实现:
+
+原理：flex设置对齐方式罢了，请查阅文末flex阅读推荐
 
 ```
 #parent{
@@ -223,14 +272,21 @@ html代码:
 #son{align-self: center;}
 
 或
-
+/*原理：这个尚未搞清楚，应该是flex使margin上下边界无限延伸至剩余空间并平分了*/
 #parent{display: flex;}
 #son{margin: auto 0;}
 ```
 
+优缺点
+
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
 
 
-##### (5)任意个元素(flex)
+
+##### (4)任意个元素(flex)
+
+原理：flex设置对齐方式罢了，请查阅文末flex阅读推荐
 
 ```
 #parent{
@@ -252,13 +308,29 @@ html代码:
 }
 ```
 
+优缺点
+
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+
+
+
+#### ★本章小结：
+
+- 对于垂直居中，最先想到的应该就是 `line-height` 了，但是这个只能用于行内内容； 
+- 其次就是考虑能不能用`vertical-align: middle;` ，不过这个一定要熟知原理才能用得顺手，建议看下[vertical-align和line-height的基友关系](http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/) ；
+- 然后便是绝对定位，虽然代码多了点，但是胜在适用于不同情况；
+- 移动端兼容性允许的情况下能用flex就用flex
+
+
+
 
 
 ### 三、水平垂直居中
 
 *一,二,三章都是parent+son的简单结构,html代码和效果图就不贴出来了,第四章以后才有*
 
-##### (1)图片
+#### (1)图片
 
 ```
 #parent{
@@ -271,7 +343,7 @@ img#son{vertical-align: middle;}
 
 
 
-##### (2)table-cell
+#### (2)table-cell
 
 ```
 #parent{
@@ -290,7 +362,7 @@ img#son{vertical-align: middle;}
 
 
 
-##### (3)button作为父元素
+#### (3)button作为父元素
 
 ```
 button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动水平垂直居中*/
@@ -303,7 +375,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 
 
 
-##### (4)绝对定位
+#### (4)绝对定位
 
 ```
 #parent{position: relative;}
@@ -318,7 +390,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 
 
 
-##### (5)绝对居中
+#### (5)绝对居中
 
 ```
 #parent{position: relative;}
@@ -336,7 +408,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 
 
 
-##### (6)flex
+#### (6)flex
 
 ```
 #parent{display: flex;}
@@ -361,7 +433,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 
 
 
-##### (7)视窗居中
+#### (7)视窗居中
 
 ```
 body#parent{}
@@ -373,11 +445,7 @@ body#parent{}
 
 
 
-##### 相关好文推荐:
 
-关于vertical-align和line-height的基友关系
-
-http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/
 
 
 
@@ -953,6 +1021,8 @@ css代码:
 
 
 
+
+
 ### 五、三列布局
 
 #### 5.1 两列定宽,一列自适应
@@ -1513,6 +1583,10 @@ css代码:
 
 
 
+
+
+
+
 ### 六、多列布局
 
 #### 6.1 等宽布局
@@ -2006,6 +2080,8 @@ div[class^="column-sm-"]{
 
 
 
+
+
 ### 七、全屏布局
 
 效果图:
@@ -2159,6 +2235,8 @@ html, body, #parent {
 #right{grid-area: main;  /*指定在哪个网格区域*/}
 #bottom{grid-area: footer;  /*指定在哪个网格区域*/}
 ```
+
+
 
 
 
