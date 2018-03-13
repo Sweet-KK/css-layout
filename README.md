@@ -1,10 +1,11 @@
 ## 	各种页面常见布局+知名网站实例分析+相关阅读推荐
 
-**阅前必看：本文总结了各种常见的布局实现，网上搜的“史上最全布局”好像也没有这么全吧？哈哈！就当作一个知识整理吧。至于每个方法的优缺点分析往后再陆续补上。还有就是这篇文章没提到的其他布局，待本人后续想到或遇到定会在此及时更新。各位读者如果发现问题或者有什么意见，欢迎提出！欢迎关注！欢迎Star！**
+**阅前必看：本文总结了各种常见的布局实现，网上搜的“史上最全布局”好像也没有这么全吧？哈哈！就当作一个知识整理吧。至于每个方法的优缺点分析往后再陆续补上。还有就是这篇文章没提到的其他布局，待本人后续想到或遇到定会在此及时更新。各位读者如果发现问题或者有什么意见，欢迎提出！——欢迎关注！欢迎Star！**
 
 
 
-> from [https://github.com/Sweet-KK/css-layout](https://github.com/Sweet-KK/css-layout)			
+> from github [https://github.com/Sweet-KK/css-layout(内容随时更新)](https://github.com/Sweet-KK/css-layout)			
+>
 > 本文原创，转载请标明出处，摘要引流则随意。
 
 
@@ -13,7 +14,7 @@
 
 **在github上没有目录，建议下载Chrome插件[Smart TOC](https://www.appinn.com/smart-toc-for-chrome/)或者clone到本地，用支持TOC目录的md软件打开阅读，比如[Typora](http://www.duote.com/soft/74881.html#download)**
 
-注：PC端推荐用法前面加▲，至于移动端在兼容性允许的情况下优先考虑flex
+注：PC端推荐用法后面加▲，至于移动端在兼容性允许的情况下可以考虑flex
 
 [TOC]
 
@@ -23,15 +24,24 @@
 
 *一,二,三章都是parent+son的简单结构,html代码和效果图就不贴出来了,第四章以后才有*
 
-##### (1)文本/行内元素/行内块级元素
+##### (1)文本/行内元素/行内块级元素▲
+
+原理：text-align只控制行内内容(文字、行内元素、行内块级元素)如何相对他的块父元素对齐
 
 ```
 #parent{text-align: center;}
 ```
 
+优缺点
+
+- 优点：简单快捷，容易理解，兼容性非常好
+- 缺点：只对行内内容有效；属性会继承影响到后代行内内容；如果子元素宽度大于父元素宽度则无效，只有后代行内内容中宽度小于设置text-align属性的元素宽度的时候，才会水平居中
 
 
-##### (2)单个块级元素
+
+##### (2)单个块级元素▲
+
+原理：根据[规范](https://www.w3.org/TR/CSS21/visudet.html#Computing_widths_and_margins)介绍得很清楚了，有这么一种情况：在margin有节余的同时如果左右margin设置了auto，将会均分剩余空间。另外，如果上下的margin设置了auto，其计算值为0
 
 ```
 #son{
@@ -40,35 +50,60 @@
 }
 ```
 
+优缺点
+
+- 优点：简单；兼容性好
+- 缺点：必须定宽，并且值不能为auto；宽度要小于父元素，否则无效
+
 
 
 ##### (3)多个块级元素
 
+原理：text-align只控制行内内容(文字、行内元素、行内块级元素)如何相对他的块父元素对齐
+
 ```
 #parent{text-align: center;}
-.son{display: inline-block;}
+.son{display: inline-block;} /*改为行内或者行内块级形式，以达到text-align对其生效*/
 ```
 
+优缺点
+
+- 优点：简单，容易理解，兼容性非常好
+- 缺点：只对行内内容有效；属性会继承影响到后代行内内容；块级改为inline-block换行、空格会产生元素间隔
 
 
-##### (4)使用绝对定位实现
+
+##### (4)使用绝对定位实现▲
+
+原理：子绝父相，top、right、bottom、left的值是相对于父元素尺寸的，然后margin或者transform是相对于自身尺寸的，组合使用达到水平居中的目的
 
 ```
 #parent{
+    height: 200px;
     width: 200px;  /*定宽*/
-    position: relative;  /*子绝父相*/
+    position: relative;  /*父相*/
+    background-color: #f00;
 }
 #son{
-    position: absolute;
+    position: absolute;  /*子绝*/
     left: 50%;  /*父元素宽度一半,这里等同于left:100px*/
     transform: translateX(-50%);  /*自身宽度一半,等同于margin-left: -50px;*/
-    width: 100px;  //定宽
+    width: 100px;  /*定宽*/
+    height: 100px;
+    background-color: #00ff00;
 }
 ```
+
+优缺点
+
+- 优点：使用margin-left兼容性好；不管是块级还是行内元素都可以实现
+- 缺点：代码较多；脱离文档流；使用margin-left需要知道宽度值；使用transform兼容性不好（ie9+）
 
 
 
 ##### (5)任意个元素(flex)
+
+原理：就是设置当前主轴对齐方式为居中。说不上为什么，flex无非就是主轴侧轴是重点，然后就是排列方式的设置，可以去看看文末的flex阅读推荐
 
 ```
 #parent{
@@ -76,6 +111,18 @@
     justify-content: center;
 }
 ```
+
+优缺点
+
+- 优点：功能强大；简单方便；容易理解
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+
+
+
+##### ★本章小结：
+
+- 对于水平居中，我们应该先考虑，哪些元素有自带的居中效果，最先想到的应该就是 `text-align:center` 了，但是这个只对行内内容有效，所以我们要使用 `text-align:center` 就必须将子元素设置为 `display: inline;` 或者 `display: inline-block;` ； 
+- 其次就是考虑能不能用`margin: 0 auto;` ，因为这都是一两句代码能搞定的事，实在不行就是用绝对定位去实现了。移动端能用flex就用flex，简单方便，灵活并且功能强大，无愧为网页布局的一大利器！
 
 
 
@@ -407,7 +454,7 @@ css代码:
 
 
 
-##### ▲(3)使用float+overflow实现
+##### (3)使用float+overflow实现▲
 
 html代码:
 
@@ -441,7 +488,7 @@ css代码:
 
 
 
-##### ▲(4)使用table实现
+##### (4)使用table实现▲
 
 html代码:
 
@@ -618,7 +665,7 @@ css代码:
 
 
 
-##### ▲(2)使用float+overflow实现
+##### (2)使用float+overflow实现▲
 
 html代码:
 
@@ -655,7 +702,7 @@ css代码:
 
 
 
-##### ▲(3)使用table实现
+##### (3)使用table实现▲
 
 html代码:
 
@@ -802,7 +849,7 @@ css代码:
 
 ![image.png](http://upload-images.jianshu.io/upload_images/8192053-7a3e44050ff89cfd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##### ▲(1)使用float+overflow实现
+##### (1)使用float+overflow实现▲
 
 html代码:
 
@@ -954,7 +1001,7 @@ css代码:
 
 
 
-##### ▲(2)使用float+overflow实现
+##### (2)使用float+overflow实现▲
 
 html代码:
 
@@ -1000,7 +1047,7 @@ css代码:
 
 
 
-##### ▲(3)使用table实现
+##### (3)使用table实现▲
 
 html代码:
 
@@ -1335,7 +1382,7 @@ css代码:
 
 ![image.png](http://upload-images.jianshu.io/upload_images/8192053-46d8a0755d510054.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-###### ▲(1)使用table实现
+###### (1)使用table实现▲
 
 html代码:
 
@@ -1417,7 +1464,7 @@ css代码:
 
 
 
-###### ▲(3)使用position实现
+###### (3)使用position实现▲
 
 html代码:
 
@@ -1472,7 +1519,7 @@ css代码:
 
 ##### 6.1.1四列等宽
 
-###### ▲(1)使用float实现
+###### (1)使用float实现▲
 
 效果图:
 
@@ -1516,7 +1563,7 @@ css代码:
 
 
 
-###### ▲(2)使用table实现
+###### (2)使用table实现▲
 
 效果图:
 
@@ -1600,7 +1647,7 @@ css代码:
 
 ![image.png](http://upload-images.jianshu.io/upload_images/8192053-3f89a669a16b57af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-###### ▲(1)使用float实现
+###### (1)使用float实现▲
 
 html代码:
 
@@ -1637,7 +1684,7 @@ css代码:
 
 
 
-###### ▲(2)使用table实现
+###### (2)使用table实现▲
 
 html代码
 
@@ -1745,7 +1792,7 @@ css代码:
 
 ![image.png](http://upload-images.jianshu.io/upload_images/8192053-9b84a6ec67e9df68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##### ▲(1)使用table实现
+##### (1)使用table实现▲
 
 html代码:
 
@@ -1880,7 +1927,7 @@ css代码:
 
 
 
-#### ▲6.3 栅格系统
+#### 6.3 栅格系统▲
 
 优缺点：
 
@@ -1965,7 +2012,7 @@ div[class^="column-sm-"]{
 
 ![image.png](http://upload-images.jianshu.io/upload_images/8192053-3799af31d5b12f66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##### ▲(1)使用绝对定位实现
+##### (1)使用绝对定位实现▲
 
 html代码:
 
