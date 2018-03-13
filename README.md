@@ -1,8 +1,6 @@
 ## 	各种页面常见布局+知名网站实例分析+相关阅读推荐
 
-**阅前必看：本文总结了各种常见的布局实现，网上搜的“史上最全布局”好像也没有这么全吧？哈哈！就当作一个知识整理吧。至于每个方法的优缺点分析以后有时间再补吧。还有就是这篇文章没提到的其他布局，待本人后续想到或遇到定会在github上及时更新。各位读者如果发现问题或者有什么意见，欢迎提出！欢迎关注！欢迎Star！**
-
-**在github上没有目录，建议clone到本地，下载一些支持生成目录的md软件打开阅读，比如Typora**
+**阅前必看：本文总结了各种常见的布局实现，网上搜的“史上最全布局”好像也没有这么全吧？哈哈！就当作一个知识整理吧。至于每个方法的优缺点分析往后再陆续补上。还有就是这篇文章没提到的其他布局，待本人后续想到或遇到定会在此及时更新。各位读者如果发现问题或者有什么意见，欢迎提出！欢迎关注！欢迎Star！**
 
 
 
@@ -12,6 +10,8 @@
 
 
 ### 目录
+
+**在github上没有目录，建议下载Chrome插件[Smart TOC](https://www.appinn.com/smart-toc-for-chrome/)或者clone到本地，用支持TOC目录的md软件打开阅读，比如[Typora](http://www.duote.com/soft/74881.html#download)**
 
 注：PC端推荐用法前面加▲，至于移动端在兼容性允许的情况下优先考虑flex
 
@@ -26,9 +26,7 @@
 ##### (1)文本/行内元素/行内块级元素
 
 ```
-#parent{
-    text-align: center;
-}
+#parent{text-align: center;}
 ```
 
 
@@ -47,12 +45,8 @@
 ##### (3)多个块级元素
 
 ```
-#parent{
-    text-align: center;
-}
-.son{
-    display: inline-block;
-}
+#parent{text-align: center;}
+.son{display: inline-block;}
 ```
 
 
@@ -118,9 +112,7 @@
     height: 150px;
     line-height: 150px;
 }
-img#son{
-    vertical-align: middle;
-}
+img#son{vertical-align: middle;}
 ```
 
 
@@ -160,9 +152,7 @@ html代码:
 
 或
 
-#parent{
-    position: relative;
-}
+#parent{position: relative;}
 #son{
     position: absolute;
     margin: auto;
@@ -182,21 +172,13 @@ html代码:
 
 或
 
-#parent{
-    display: flex;
-}
-#son{
-    align-self: center;
-}
+#parent{display: flex;}
+#son{align-self: center;}
 
 或
 
-#parent{
-    display: flex;
-}
-#son{
-    margin: auto 0;
-}
+#parent{display: flex;}
+#son{margin: auto 0;}
 ```
 
 
@@ -211,12 +193,8 @@ html代码:
 
 或
 
-#parent{
-    display: flex;
-}
-.son{
-    align-self: center;
-}
+#parent{display: flex;}
+.son{align-self: center;}
 
 或 
 
@@ -241,9 +219,7 @@ html代码:
     line-height: 150px;  /*行高的值与height相等*/
     text-align: center;
 }
-img#son{
-    vertical-align: middle;
-}
+img#son{vertical-align: middle;}
 ```
 
 
@@ -283,9 +259,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 ##### (4)绝对定位
 
 ```
-#parent{
-    position: relative;
-}
+#parent{position: relative;}
 #son{
     position: absolute;
     top: 50%;
@@ -300,9 +274,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 ##### (5)绝对居中
 
 ```
-#parent{
-    position: relative;
-}
+#parent{position: relative;}
 #son{
     position: absolute;
     margin: auto;
@@ -320,12 +292,8 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 ##### (6)flex
 
 ```
-#parent{
-    display: flex;
-}
-#son{
-    margin: auto;
-}
+#parent{display: flex;}
+#son{margin: auto;}
 
 或
 
@@ -341,9 +309,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
     display: flex;
     justify-content: center;
 }
-#son{
-    align-self: center;
-}
+#son{align-self: center;}
 ```
 
 
@@ -351,9 +317,7 @@ button#parent{  /*改掉button默认样式就好了,不需要任何处理,自动
 ##### (7)视窗居中
 
 ```
-body#parent{
-    
-}
+body#parent{}
 #son{
     margin: 50vh auto 0;
     transform: translateY(-50%);
@@ -500,12 +464,9 @@ css代码:
     width: 100px;
     background-color: #f00;
 }
-#right {
-    background-color: #0f0;
-}
-#left,#right{
-    display: table-cell;  /*利用单元格自动分配宽度*/
-}
+#right {background-color: #0f0;}
+/*利用单元格自动分配宽度*/
+#left,#right{display: table-cell;}
 ```
 
 优缺点：
@@ -531,11 +492,9 @@ html代码:
 css代码:
 
 ```
-#parent{
-    position: relative;  /*子绝父相*/
-}
+#parent{position: relative;}  /*父相*/
 #left {
-    position: absolute;
+    position: absolute;  /*子绝*/
     top: 0;
     left: 0;
     background-color: #f00;
@@ -543,7 +502,7 @@ css代码:
     height: 500px;
 }
 #right {
-    position: absolute;
+    position: absolute;  /*子绝*/
     top: 0;
     left: 100px;  /*值大于等于#left的宽度*/
     right: 0;
@@ -610,12 +569,8 @@ css代码:
     display: grid;
     grid-template-columns: 100px auto;  /*设定2列就ok了,auto换成1fr也行*/
 }
-#left {
-    background-color: #f00;
-}
-#right {
-    background-color: #0f0;
-}
+#left {background-color: #f00;}
+#right {background-color: #0f0;}
 ```
 
 
@@ -755,11 +710,9 @@ html代码:
 css代码:
 
 ```
-#parent{
-    position: relative;  /*子绝父相*/
-}
+#parent{position: relative;}  /*父相*/
 #left {
-    position: absolute;
+    position: absolute;  /*子绝*/
     top: 0;
     left: 0;
     right: 100px;  /*大于等于#rigth的宽度*/
@@ -767,7 +720,7 @@ css代码:
     height: 500px;
 }
 #right {
-    position: absolute;
+    position: absolute;  /*子绝*/
     top: 0;
     right: 0;
     background-color: #0f0;
@@ -831,12 +784,8 @@ css代码:
     display: grid;
     grid-template-columns: auto 100px;  /*设定2列,auto换成1fr也行*/
 }
-#left {
-    background-color: #f00;
-}
-#right {
-    background-color: #0f0;
-}
+#left {background-color: #f00;}
+#right {background-color: #0f0;}
 ```
 
 
@@ -905,9 +854,7 @@ html代码:
 css代码:
 
 ```
-#parent{
-    display: flex;
-}
+#parent{display: flex;}
 #left { /*不设宽度*/
     margin-right: 10px;
     height: 500px;
@@ -984,9 +931,7 @@ html代码:
 css代码:
 
 ```
-#parent{
-    min-width: 310px; /*100+10+200,防止宽度不够,子元素换行*/
-}
+#parent{min-width: 310px;} /*100+10+200,防止宽度不够,子元素换行*/
 #left {
     margin-right: 10px;  /*#left和#center间隔*/
     float: left;
@@ -1026,9 +971,7 @@ html代码:
 css代码:
 
 ```
-#parent{
-    min-width: 320px; /*100+10+200+20,防止宽度不够,子元素换行*/
-}
+#parent{min-width: 320px;} /*100+10+200+20,防止宽度不够,子元素换行*/
 #left {
     margin-right: 10px; /*间隔*/
     float: left;
@@ -1174,9 +1117,7 @@ css代码:
     margin-right: 10px;  /*间距*/
     background-color: #eeff2b;
 }
-#right {
-    background-color: #0f0;
-}
+#right {background-color: #0f0;}
 ```
 
 
@@ -1493,11 +1434,9 @@ html代码:
 css代码:
 
 ```
-#parent {
-    position: relative; /*子绝父相*/
-}
+#parent {position: relative;} /*父相*/
 #left {
-    position: absolute;
+    position: absolute; /*子绝*/
     top: 0;
     left: 0;
     width: 100px;
@@ -1511,7 +1450,7 @@ css代码:
     background-color: #eeff2b;
 }
 #right {
-    position: absolute;
+    position: absolute; /*子绝*/
     top: 0;
     right: 0;
     width: 200px;
@@ -1555,9 +1494,8 @@ html代码:
 css代码:
 
 ```
-#parent {
-    margin-left: -20px; /*使整体内容看起来居中,抵消padding-left的影响*/
-}
+/*使整体内容看起来居中,抵消padding-left的影响*/
+#parent {margin-left: -20px;}
 .column{
     padding-left: 20px;  /*盒子的边距*/
     width: 25%;
@@ -1567,12 +1505,8 @@ css代码:
     background-clip: content-box; /*背景色从内容开始绘制,方便观察*/
     height: 500px;
 }
-.column:nth-child(odd){
-    background-color: #f00;
-}
-.column:nth-child(even){
-    background-color: #0f0;
-}
+.column:nth-child(odd){background-color: #f00;}
+.column:nth-child(even){background-color: #0f0;}
 ```
 
 优缺点：
@@ -1611,15 +1545,9 @@ css代码:
     /*两边离页面间距无法消除,改用子元素设置padding来当成间隔就不会有这样的问题*/
     border-spacing: 20px;  /*设置间距*/
 }
-.column{
-    display: table-cell;
-}
-.column:nth-child(odd){
-    background-color: #f00;
-}
-.column:nth-child(even){
-    background-color: #0f0;
-}
+.column{display: table-cell;}
+.column:nth-child(odd){background-color: #f00;}
+.column:nth-child(even){background-color: #0f0;}
 ```
 
 优缺点：
@@ -1660,12 +1588,8 @@ css代码:
     flex: 1; /*一起平分#parent*/
     margin-left: 15px; /*设置间距*/
 }
-.column:nth-child(odd){
-    background-color: #f00;
-}
-.column:nth-child(even){
-    background-color: #0f0;
-}
+.column:nth-child(odd){background-color: #f00;}
+.column:nth-child(even){background-color: #0f0;}
 ```
 
 
@@ -1696,20 +1620,14 @@ html代码:
 css代码:
 
 ```
-#parent {
-    height: 500px;
-}
+#parent {height: 500px;}
 .column{
     float: left;  /*添加浮动*/
     width: 16.66666666666667%;  /*100÷列数,得出百分比*/
     height: 500px;
 }
-.column:nth-child(odd){
-    background-color: #f00;
-}
-.column:nth-child(even){
-    background-color: #0f0;
-}
+.column:nth-child(odd){background-color: #f00;}
+.column:nth-child(even){background-color: #0f0;}
 ```
 
 优缺点：
@@ -1744,15 +1662,10 @@ css代码:
     height: 500px;
     display: table;
 }
-.column{
-    display: table-cell; /*无需关注列数,单元格自动平分*/
-}
-.column:nth-child(odd){
-    background-color: #f00;
-}
-.column:nth-child(even){
-    background-color: #0f0;
-}
+/*无需关注列数,单元格自动平分*/
+.column{display: table-cell;}
+.column:nth-child(odd){background-color: #f00;}
+.column:nth-child(even){background-color: #0f0;}
 ```
 
 优缺点：
@@ -1786,15 +1699,10 @@ css代码:
     height: 500px;
     display: flex;
 }
-.column{
-    flex: 1;  /*无需关注列数,一起平分#parent*/
-}
-.column:nth-child(odd){
-    background-color: #f00;
-}
-.column:nth-child(even){
-    background-color: #0f0;
-}
+/*无需关注列数,一起平分#parent*/
+.column{flex: 1;}
+.column:nth-child(odd){background-color: #f00;}
+.column:nth-child(even){background-color: #0f0;}
 ```
 
 
@@ -1825,12 +1733,8 @@ css代码:
     grid-template-columns: repeat(6,1fr);  /*6就是列数*/
 }
 .column{}
-.column:nth-child(odd){
-    background-color: #f00;
-}
-.column:nth-child(even){
-    background-color: #0f0;
-}
+.column:nth-child(odd){background-color: #f00;}
+.column:nth-child(even){background-color: #0f0;}
 ```
 
 
@@ -1876,9 +1780,7 @@ css代码:
     margin: 0 auto;
     display: table;
 }
-.row {
-    display: table-row;
-}
+.row {display: table-row;}
 .item {
     border: 1px solid #000;
     display: table-cell;
@@ -1973,9 +1875,7 @@ css代码:
     grid-template-columns: repeat(3, 1fr); /*等同于1fr 1fr 1fr,此为重复的合并写法*/
     grid-template-rows: repeat(3, 1fr);  /*等同于1fr 1fr 1fr,此为重复的合并写法*/
 }
-.item {
-    border: 1px solid #000;
-}
+.item {border: 1px solid #000;}
 ```
 
 
@@ -2084,9 +1984,7 @@ css代码:
 
 ```
 html, body, #parent {height: 100%;overflow: hidden;}
-#parent > div {
-    border: 1px solid #000;
-}
+#parent > div {border: 1px solid #000;}
 #top {
     position: absolute;
     top: 0;
@@ -2149,26 +2047,18 @@ css代码:
     margin: 0;
     padding: 0;
 }
-html,body,#parent{
-    height:100%;
-}
+html,body,#parent{height:100%;}
 #parent {
     display: flex;
     flex-direction: column;
 }
-#top {
-    height: 100px;
-}
-#bottom {
-    height: 50px;
-}
+#top {height: 100px;}
+#bottom {height: 50px;}
 #middle {
     flex: 1;
     display: flex;
 }
-#left {
-    width: 200px;
-}
+#left {width: 200px;}
 #right {
     flex: 1;
     overflow: auto;
@@ -2216,21 +2106,11 @@ html, body, #parent {
         "aside main"
         "footer footer";
 }
-#parent>div{
-    border: 1px solid #000;
-}
-#top{
-    grid-area: header;  /*指定在哪个网格区域*/
-}
-#left{
-    grid-area: aside;  /*指定在哪个网格区域*/
-}
-#right{
-    grid-area: main;  /*指定在哪个网格区域*/
-}
-#bottom{
-    grid-area: footer;  /*指定在哪个网格区域*/
-}
+#parent>div{border: 1px solid #000;}
+#top{grid-area: header;  /*指定在哪个网格区域*/}
+#left{grid-area: aside;  /*指定在哪个网格区域*/}
+#right{grid-area: main;  /*指定在哪个网格区域*/}
+#bottom{grid-area: footer;  /*指定在哪个网格区域*/}
 ```
 
 
@@ -2272,9 +2152,7 @@ css代码:
     box-sizing: border-box;
     list-style: none;
 }
-body{
-    background-color: #f5f5f5;
-}
+body{background-color: #f5f5f5;}
 .header{
     margin-bottom: 20px;
     height: 40px;
@@ -2431,9 +2309,7 @@ css代码：
     height: 100%;
     border: 1px solid #000;
 }
-.recommend-right > ul {
-    height: 100%;
-}
+.recommend-right > ul {height: 100%;}
 .recommend-right > ul li {
     float: left;
     width: 316px;
@@ -2474,9 +2350,7 @@ css代码：
     height: 100%;
     background-color: #fff;
 }
-.content-shops > li+li {
-    margin-left: 12.5px;
-}
+.content-shops > li+li {margin-left: 12.5px;}
 ```
 
 
@@ -2642,18 +2516,14 @@ css代码：
     height: 58px;
     background-color: black;
 }
-.video-content{
-    height: 285px;
-}
+.video-content{height: 285px;}
 .video-content>li{
     float: left;
     width: 296px;
     height: 100%;
     border: 1px solid #000;
 }
-.video-content>li+li{
-    margin-left: 14px;
-}
+.video-content>li+li{margin-left: 14px;}
 ```
 
 
@@ -2706,9 +2576,7 @@ css代码:
     height: 80px;
     background-color: seagreen;
 }
-.bottom-service>ul{
-    height: 100%;
-}
+.bottom-service>ul{height: 100%;}
 .bottom-service>ul li{
     position: relative;
     padding: 0 50px;
@@ -2737,9 +2605,7 @@ css代码:
     height: 100%;
     background-color: yellow;
 }
-.links-left>ul{
-    height: 100%;
-}
+.links-left>ul{height: 100%;}
 .links-left>ul li{
     padding-right: 60px;
     float: left;
