@@ -1,6 +1,6 @@
 ## 	各种页面常见布局+知名网站实例分析+相关阅读推荐
 
-**阅前必看：本文总结了各种常见的布局实现，网上搜的“史上最全布局”好像也没有这么全吧？哈哈！就当作一个知识整理吧。至于每个方法的优缺点分析往后再陆续补上。还有就是这篇文章没提到的其他布局，待本人后续想到或遇到定会在此及时更新。各位读者如果发现问题或者有什么意见，欢迎提出！——欢迎关注！欢迎Star！**
+**阅前必看：本文总结了各种常见的布局实现，网上搜的“史上最全布局”好像也没有这么全吧？哈哈！就当作一个知识整理吧。至于每个方法的优缺点分析会陆续补上。还有就是这篇文章没提到的其他布局，待本人后续想到或遇到定会在此及时更新。各位读者如果发现问题或者有什么意见，欢迎提出！——欢迎关注！欢迎Star！**
 
 
 
@@ -12,7 +12,7 @@
 
 ### 目录
 
-**在github上没有目录，建议下载Chrome插件[Smart TOC](https://www.appinn.com/smart-toc-for-chrome/)或者clone到本地，用支持TOC目录的md软件打开阅读，比如[Typora](http://www.duote.com/soft/74881.html#download)**
+**在github上md没有目录，已经做好了一个[在线demo文档](https://sweet-kk.github.io/css-layout/)。如果需要下载readme到本地建议安装Chrome插件[Smart TOC](https://www.appinn.com/smart-toc-for-chrome/)或者用支持TOC目录的md软件打开阅读，比如[Typora](http://www.duote.com/soft/74881.html#download)**
 
 注：PC端推荐用法后面加▲，至于移动端在兼容性允许的情况下可以考虑flex
 
@@ -212,7 +212,7 @@ html代码:
 
 优缺点
 
-- 优点：简单；宽高不定；兼容性好（ie8+）
+- 优点：简单；适用于宽度高度未知情况；兼容性好（ie8+）
 - 缺点：设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
 
 
@@ -320,7 +320,7 @@ html代码:
 - 对于垂直居中，最先想到的应该就是 `line-height` 了，但是这个只能用于行内内容； 
 - 其次就是考虑能不能用`vertical-align: middle;` ，不过这个一定要熟知原理才能用得顺手，建议看下[vertical-align和line-height的基友关系](http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/) ；
 - 然后便是绝对定位，虽然代码多了点，但是胜在适用于不同情况；
-- 移动端兼容性允许的情况下能用flex就用flex
+- 移动端兼容性允许的情况下能用flex就用flex。
 
 
 
@@ -349,7 +349,7 @@ html代码:
 
 优缺点
 
-- 优点：代码简单；兼容性好
+- 优点：代码简单；兼容性好（ie8+）
 - 缺点：只对行内内容有效；需要添加`font-size: 0;` 才可以完全的垂直居中；不过需要注意html中#parent包裹#son之间需要有换行或空格；熟悉`line-height `和`vertical-align`的基友关系较难
 
 
@@ -375,7 +375,7 @@ html代码:
 
 优缺点
 
-- 优点：简单；宽高不定；兼容性好（ie8+）
+- 优点：简单；适用于宽度高度未知情况；兼容性好（ie8+）
 - 缺点：设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
 
 
@@ -506,7 +506,7 @@ button#parent{  /*改掉button默认样式就好了,不需要居中处理*/
 - 一般情况下，水平垂直居中，我们最常用的就是绝对定位加负边距了，缺点就是需要知道宽高，使用transform倒是可以不需要，但是兼容性不好（ie9+）； 
 - 其次就是绝对居中，绝对定位设置top、left、right、bottom为0，然后`margin:auto;` 让浏览器自动平分边距以达到水平垂直居中的目的；
 - 如果是行内/行内块级/图片这些内容，可以优先考虑`line-height`和`vertical-align` 结合使用，不要忘了还有`text-align` ，这个方法代码其实不多，就是理解原理有点困难，想要熟练应对各种情况还需好好研究；
-- 移动端兼容性允许的情况下能用flex就用flex
+- 移动端兼容性允许的情况下能用flex就用flex。
 
 
 
