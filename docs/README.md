@@ -4,6 +4,12 @@
 
 
 
+**在github上Markdown不支持目录，所以准备了一个[在线demo文档](https://sweet-kk.github.io/css-layout/)**。←点这里阅读（已附带目录）
+
+**如果直接阅读README没有目录会看得很辛苦，建议安装Chrome插件[Smart TOC](https://www.appinn.com/smart-toc-for-chrome/)或者clone到本地用支持TOC目录的md软件打开阅读，比如[Typora](http://www.duote.com/soft/74881.html#download)**
+
+
+
 > from github [https://github.com/Sweet-KK/css-layout(内容随时更新)](https://github.com/Sweet-KK/css-layout)			
 >
 > 本文原创，转载请标明出处，摘要引流则随意。
@@ -12,9 +18,7 @@
 
 ### 目录
 
-**在github上md没有目录，已经做好了一个[在线demo文档](https://sweet-kk.github.io/css-layout/)。如果需要下载readme到本地建议安装Chrome插件[Smart TOC](https://www.appinn.com/smart-toc-for-chrome/)或者用支持TOC目录的md软件打开阅读，比如[Typora](http://www.duote.com/soft/74881.html#download)**
-
-注：PC端推荐用法后面加▲，至于移动端在兼容性允许的情况下可以考虑flex
+**注**：PC端推荐用法后面加▲，至于移动端在兼容性允许的情况下可以考虑flex
 
 [TOC]
 
@@ -3743,7 +3747,7 @@ https://drafts.csswg.org/css-grid/
 
 ### End：感谢
 
-**感谢大家阅读，喜欢的就点个收藏或者Star吧！各位的支持，就是本人的最大动力，谢谢！**
+**感谢大家阅读，喜欢的就点个Star吧！各位的支持，就是本人的最大动力，谢谢！**
 
 
 
