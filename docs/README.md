@@ -26,7 +26,7 @@
 
 *一,二,三章都是parent+son的简单结构,html代码和效果图就不贴出来了,第四章以后才有*
 
-#### (1)文本/行内元素/行内块级元素▲
+#### (1)文本/行内/行内块级▲
 
 原理：text-align只控制行内内容(文字、行内元素、行内块级元素)如何相对他的块父元素对齐
 
@@ -75,7 +75,7 @@
 
 
 
-#### (4)使用绝对定位实现▲
+#### (4)使用position实现▲
 
 原理：子绝父相，top、right、bottom、left的值是相对于父元素尺寸的，然后margin或者transform是相对于自身尺寸的，组合使用达到水平居中的目的
 
@@ -138,7 +138,7 @@
 
 *一,二,三章都是parent+son的简单结构,html代码和效果图就不贴出来了,第四章以后才有*
 
-#### (1)单行文本/行内元素/行内块级元素▲
+#### (1)单行文本/行内/行内块级▲
 
 原理：line-height的最终表现是通过inline box实现的，而无论inline box所占据的高度是多少（无论比文字大还是比文字小），其占据的空间都是与文字内容公用水平中垂线的。
 
@@ -156,7 +156,7 @@
 
 
 
-#### (2)多行文本/行内元素/行内块级元素
+#### (2)多行文本/行内/行内块级
 
 原理同上
 
@@ -222,7 +222,7 @@ html代码:
 
 
 
-##### (2) 使用绝对定位实现:▲
+##### (2) 使用position实现:▲
 
 ```
 /*原理：子绝父相，top、right、bottom、left的值是相对于父元素尺寸的，然后margin或者transform是相对于自身尺寸的，组合使用达到水平居中的目的*/
@@ -531,7 +531,7 @@ button#parent{  /*改掉button默认样式就好了,不需要居中处理*/
 
 ![](http://upload-images.jianshu.io/upload_images/8192053-fd94b0f6660e0a9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##### (1)利用float+margin实现▲
+##### (1)利用float+margin▲
 
 html代码:
 
@@ -567,7 +567,7 @@ css代码:
 
 
 
-##### (2)利用float+margin(fix)实现
+##### (2)利用float+margin(fix)
 
 html代码:
 
@@ -608,7 +608,7 @@ css代码:
 
 
 
-##### (3)使用float+overflow实现▲
+##### (3)使用float+overflow▲
 
 html代码:
 
@@ -681,7 +681,7 @@ css代码:
 
 
 
-##### (5)使用绝对定位实现
+##### (5)使用position实现
 
 html代码:
 
@@ -809,7 +809,7 @@ css代码:
 
 ![image.png](http://upload-images.jianshu.io/upload_images/8192053-c62fee793ff890df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##### (1)使用float+margin实现▲
+##### (1)使用float+margin▲
 
 html代码:
 
@@ -851,7 +851,7 @@ css代码:
 - 优点：代码简单；兼容性好；
 - 缺点：较难理解；margin或padding的值要对应好；浮动脱离文档流，需要手动清除浮动，否则会产生高度塌陷
 
-##### (2)使用float+overflow实现▲
+##### (2)使用float+overflow▲
 
 html代码:
 
@@ -930,7 +930,7 @@ css代码:
 - 缺点：margin失效；设置间隔比较麻烦；设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
 
 
-##### (4)使用绝对定位实现
+##### (4)使用position实现
 
 html代码:
 
@@ -1056,7 +1056,7 @@ css代码:
 
 ![image.png](http://upload-images.jianshu.io/upload_images/8192053-7a3e44050ff89cfd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##### (1)使用float+overflow实现▲
+##### (1)使用float+overflow▲
 
 html代码:
 
@@ -1191,7 +1191,7 @@ css代码:
 
 ![image.png](http://upload-images.jianshu.io/upload_images/8192053-2a21c66c4dad4f56.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##### (1)使用float+margin实现
+##### (1)使用float+margin
 
 html代码:
 
@@ -1236,7 +1236,7 @@ css代码:
 - 优点：代码简单；容易理解；兼容性好
 - 缺点：margin或padding的值要对应好；父元素宽度不够浮动元素会换行
 
-##### (2)使用float+overflow实现▲
+##### (2)使用float+overflow▲
 
 html代码:
 
@@ -1283,7 +1283,7 @@ css代码:
 - 缺点：#right设置margin-left需要大于左边两个盒子宽度、间隔之和才有效。或者直接给#center设置margin-right；父元素宽度不够，浮动元素换行
 
 
-##### (3)使用绝对定位实现▲
+##### (3)使用position实现▲
 
 html代码:
 
@@ -2376,13 +2376,15 @@ div[class^="column-sm-"]{
 
 
 
+
+
 ### 七、全屏布局
 
 效果图:
 
 ![image.png](http://upload-images.jianshu.io/upload_images/8192053-3799af31d5b12f66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##### (1)使用绝对定位实现▲
+#### (1)使用position实现▲
 
 html代码:
 
@@ -2442,8 +2444,7 @@ html, body, #parent {height: 100%;overflow: hidden;}
 - 缺点：代码繁多；需要计算好各个盒子的位置；
 
 
-
-##### (2)使用flex实现
+#### (2)使用flex实现
 
 html代码:
 
@@ -2493,7 +2494,7 @@ html,body,#parent{height:100%;}
 - 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
 - flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
 
-##### (3)使用Grid实现
+#### (3)使用Grid实现
 
 html代码:
 
@@ -3528,7 +3529,7 @@ body {
 
 
 
-##### 8.1.2 Flexbox+Grid搭配用法(未来...)
+##### 8.1.2 Flexbox+Grid(未来...)
 
 html代码:
 
