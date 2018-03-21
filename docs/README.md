@@ -118,14 +118,17 @@
 
 - 优点：功能强大；简单方便；容易理解
 - 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
+
+
 
 
 
 #### ★本章小结：
 
 - 对于水平居中，我们应该先考虑，哪些元素有自带的居中效果，最先想到的应该就是 `text-align:center` 了，但是这个只对行内内容有效，所以我们要使用 `text-align:center` 就必须将子元素设置为 `display: inline;` 或者 `display: inline-block;` ； 
-- 其次就是考虑能不能用`margin: 0 auto;` ，因为这都是一两句代码能搞定的事，实在不行就是用绝对定位去实现了。
-- 移动端能用flex就用flex，简单方便，灵活并且功能强大，无愧为网页布局的一大利器！
+- 其次就是考虑能不能用`margin: 0 auto;` ，因为这都是一两句代码能搞定的事，实在不行就是用绝对定位去实现了；
+- 移动端能用flex就用flex，简单方便，灵活并且功能强大，无愧为网页布局的一大利器！务必带上兼容，写法可参考文末阅读推荐，也可以使用Autoprefixer。
 
 
 
@@ -260,7 +263,7 @@ html代码:
 
 ##### (3) 使用flex实现:
 
-原理：flex设置对齐方式罢了，请查阅文末flex阅读推荐
+原理：flex设置排列方式、对齐方式罢了，请查阅文末flex阅读推荐
 
 ```
 #parent{
@@ -283,6 +286,9 @@ html代码:
 
 - 优点：简单灵活；功能强大
 - 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
+
+
 
 
 
@@ -322,7 +328,7 @@ html代码:
 - 对于垂直居中，最先想到的应该就是 `line-height` 了，但是这个只能用于行内内容； 
 - 其次就是考虑能不能用`vertical-align: middle;` ，不过这个一定要熟知原理才能用得顺手，建议看下[vertical-align和line-height的基友关系](http://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/) ；
 - 然后便是绝对定位，虽然代码多了点，但是胜在适用于不同情况；
-- 移动端兼容性允许的情况下能用flex就用flex。
+- 移动端兼容性允许的情况下能用flex就用flex，务必带上兼容，写法可参考文末阅读推荐，也可以使用Autoprefixer。
 
 
 
@@ -454,7 +460,7 @@ button#parent{  /*改掉button默认样式就好了,不需要居中处理*/
 
 #### (6)flex
 
-原理：flex设置对齐方式罢了，请查阅文末flex阅读推荐
+原理：flex设置排列方式、对齐方式罢了，请查阅文末flex阅读推荐
 
 ```
 #parent{display: flex;}
@@ -481,6 +487,9 @@ button#parent{  /*改掉button默认样式就好了,不需要居中处理*/
 
 - 优点：简单灵活；功能强大
 - 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
+
+
 
 
 
@@ -508,7 +517,7 @@ button#parent{  /*改掉button默认样式就好了,不需要居中处理*/
 - 一般情况下，水平垂直居中，我们最常用的就是绝对定位加负边距了，缺点就是需要知道宽高，使用transform倒是可以不需要，但是兼容性不好（ie9+）； 
 - 其次就是绝对居中，绝对定位设置top、left、right、bottom为0，然后`margin:auto;` 让浏览器自动平分边距以达到水平垂直居中的目的；
 - 如果是行内/行内块级/图片这些内容，可以优先考虑`line-height`和`vertical-align` 结合使用，不要忘了还有`text-align` ，这个方法代码其实不多，就是理解原理有点困难，想要熟练应对各种情况还需好好研究；
-- 移动端兼容性允许的情况下能用flex就用flex。
+- 移动端兼容性允许的情况下能用flex就用flex，务必带上兼容，写法可参考文末阅读推荐，也可以使用Autoprefixer。
 
 
 
@@ -522,7 +531,7 @@ button#parent{  /*改掉button默认样式就好了,不需要居中处理*/
 
 ![](http://upload-images.jianshu.io/upload_images/8192053-fd94b0f6660e0a9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##### (1)利用float+margin实现
+##### (1)利用float+margin实现▲
 
 html代码:
 
@@ -545,9 +554,16 @@ css代码:
 #right {
     background-color: #0f0;
     height: 500px;
-    margin-left: 100px; /*大于等于#left的宽度*/
+    margin-left: 100px; /*设置间隔，大于等于#left的宽度*/
 }
 ```
+
+原理：#left左浮动，脱离文档流，#right为了不被#left挡住，设置margin-left大于等于#left的宽度达到视觉上的两栏布局
+
+优缺点
+
+- 优点：代码简单；容易理解；兼容性好
+- 缺点：#left的宽度和#right的margin-left需要对应且固定
 
 
 
@@ -576,14 +592,19 @@ css代码:
 #right-fix {
     float: right;
     width: 100%;
-    margin-left: -100px; /*正值大于或等于#left的宽度,才能显示在同一行*/
+    margin-left: -100px; /*正值大于或等于#left的宽度,才能上移一行*/
 }
 #right{
-    margin-left: 100px; /*大于或等于#left的宽度*/
+    margin-left: 100px; /*大于或等于#left的宽度,才不会遮挡#left*/
     background-color: #0f0;
     height: 500px;
 }
 ```
+
+优缺点
+
+- 优点：代码较简单；兼容性好
+- 缺点：相比（1）的方法，多了一个div，多写了一些代码；不容易理解；margin需要对应好
 
 
 
@@ -614,14 +635,16 @@ css代码:
 }
 ```
 
+原理：#left左浮动，#right触发bfc达到自适应
+
 优缺点：
 
-- 优点：代码简单，容易理解，无需关注定宽的宽度，利用bfc达到自适应效果
-- 缺点：浮动脱离文档流，需要手动清除浮动，否则会产生高度塌陷；不支持ie6
+- 优点：代码简单；容易理解；无需关注定宽的宽度，利用bfc达到自适应效果
+- 缺点：#right设置margin-left需要大于#left的宽度才有效，或者直接给#left设置margin-right
 
 
 
-##### (4)使用table实现▲
+##### (4)使用table实现
 
 html代码:
 
@@ -649,10 +672,12 @@ css代码:
 #left,#right{display: table-cell;}
 ```
 
+原理：CSS Table以表格的形式显示
+
 优缺点：
 
-- 优点：代码简单，容易理解，无需关注定宽的宽度，利用单元格自动分配达到自适应效果
-- 缺点：margin失效；设置间隔比较麻烦；不支持ie8-
+- 优点：代码简单；容易理解；适用于宽度高度未知情况；兼容性好（ie8+）
+- 缺点：margin失效；设置间隔比较麻烦；设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
 
 
 
@@ -691,6 +716,13 @@ css代码:
 }
 ```
 
+原理：利用绝对定位算好宽高固定好两个盒子的位置
+
+优缺点
+
+- 优点：容易理解；兼容性好
+- 代码较多；脱离文档流；左边盒子的width需要对应右边盒子的left值
+
 
 
 ##### (6)使用flex实现
@@ -725,6 +757,14 @@ css代码:
 }
 ```
 
+原理：flex设置排列方式、对齐方式罢了，请查阅文末flex阅读推荐
+
+优缺点
+
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
+
 
 
 ##### (7)使用Grid实现
@@ -751,7 +791,15 @@ css代码:
 }
 #left {background-color: #f00;}
 #right {background-color: #0f0;}
+
 ```
+
+原理：css grid布局，请查看文末的阅读推荐
+
+优缺点
+
+- 优点：灵活划分网格区域；新型布局利器，适用于页面三维布局
+- 缺点：[兼容性不好](https://caniuse.com/#search=grid)，移动端（Android5.0+）
 
 
 
@@ -761,7 +809,7 @@ css代码:
 
 ![image.png](http://upload-images.jianshu.io/upload_images/8192053-c62fee793ff890df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##### (1)使用float+margin实现
+##### (1)使用float+margin实现▲
 
 html代码:
 
@@ -796,7 +844,12 @@ css代码:
 }
 ```
 
+原理：一个左浮一个右浮，#left宽度100%所以要设置margin-left负值让#right上来一行，然后#parent设置padding-left的正值抵消掉#left的位移，此处换成margin也可以
 
+优缺点
+
+- 优点：代码简单；兼容性好；
+- 缺点：较难理解；margin或padding的值要对应好；浮动脱离文档流，需要手动清除浮动，否则会产生高度塌陷
 
 ##### (2)使用float+overflow实现▲
 
@@ -828,14 +881,16 @@ css代码:
 }
 ```
 
+原理：#right右浮动，#left触发bfc达到自适应
+
 优缺点：
 
-- 优点：代码简单，容易理解，无需关注定宽的宽度，利用bfc达到自适应效果
-- 缺点：浮动脱离文档流，需要手动清除浮动，否则会产生高度塌陷；不支持ie6
+- 优点：代码简单；容易理解；无需关注定宽的宽度，利用bfc达到自适应效果
+- 缺点：#left设置margin-right需要大于#right的宽度才有效，或者直接给#right设置margin-left
 
 
 
-##### (3)使用table实现▲
+##### (3)使用table实现
 
 html代码:
 
@@ -867,11 +922,12 @@ css代码:
 }
 ```
 
+原理：CSS Table以表格的形式显示
+
 优缺点：
 
-- 优点：代码简单，容易理解，无需关注定宽的宽度，利用单元格自动分配达到自适应效果
-- 缺点：margin失效；设置间隔比较麻烦；不支持ie8-
-
+- 优点：代码简单；容易理解；适用于宽度高度未知情况；兼容性好（ie8+）
+- 缺点：margin失效；设置间隔比较麻烦；设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
 
 
 ##### (4)使用绝对定位实现
@@ -909,7 +965,12 @@ css代码:
 }
 ```
 
+原理：利用绝对定位算好宽高固定好两个盒子的位置
 
+优缺点
+
+- 优点：容易理解；兼容性好
+- 代码较多；脱离文档流；左边盒子的right需要对应右边盒子的width值
 
 ##### (5)使用flex实现
 
@@ -941,7 +1002,13 @@ css代码:
 }
 ```
 
+原理：flex设置排列方式、对齐方式罢了，请查阅文末flex阅读推荐
 
+优缺点
+
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
 
 ##### (6)使用Grid实现
 
@@ -967,6 +1034,13 @@ css代码:
 #left {background-color: #f00;}
 #right {background-color: #0f0;}
 ```
+
+原理：css grid布局，请查看文末的阅读推荐
+
+优缺点
+
+- 优点：灵活划分网格区域；新型布局利器，适用于页面三维布局
+- 缺点：[兼容性不好](https://caniuse.com/#search=grid)，移动端（Android5.0+）
 
 
 
@@ -1011,10 +1085,12 @@ css代码:
 }
 ```
 
+原理：#left不设宽度左浮动，#right触发bfc达到自适应
+
 优缺点：
 
 - 优点：代码简单，容易理解，无需关注宽度，利用bfc达到自适应效果
-- 缺点：浮动脱离文档流，需要手动清除浮动，否则会产生高度塌陷；不支持ie6
+- 缺点：#right设置margin-left需要大于#left的宽度才有效，或者直接给#left设置margin-right
 
 
 
@@ -1047,7 +1123,13 @@ css代码:
 }
 ```
 
+原理：flex设置排列方式、对齐方式罢了，请查阅文末flex阅读推荐
 
+优缺点
+
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
 
 ##### (3)使用Grid实现
 
@@ -1080,9 +1162,22 @@ css代码:
 }
 ```
 
+原理：css grid布局，请查看文末的阅读推荐
+
+优缺点
+
+- 优点：灵活划分网格区域；新型布局利器，适用于页面三维布局
+- 缺点：[兼容性不好](https://caniuse.com/#search=grid)，移动端（Android5.0+）
 
 
-*左列自适应,右列不定宽同理(参考4.1和4.3对应代码示例)*
+
+#### ★本章小结：
+
+- 两列布局我们用得比较多的就是浮动，然后最简单就是把另外那个不是浮动的盒子触发bfc以达到自适应效果就O了。其次就是设置对应固宽值的的一些margin、padding去改变盒子的排布以达到我们的目的； 
+- 除了浮动，我们还可以用绝对定位，计算好宽高、位置去设置样式，这个简单也容易理解，就是脱离文档流并且代码稍微多了一点；
+- 还有就是css table布局，其实这个挺强大的，也简单，兼容性不错（ie8+），但就是table表现的bug太多，不感知margin之类的一些属性。当然，要是需求足够，完全是可以先考虑这个的；
+- 移动端兼容性允许的情况下能用flex就用flex，务必带上兼容，写法可参考文末阅读推荐，也可以使用Autoprefixer；
+- **左列自适应,右列不定宽同理(参考4.1和4.3对应代码示例)。**
 
 
 
@@ -1134,7 +1229,12 @@ css代码:
 }
 ```
 
+原理：两个盒子浮动，另一个盒子计算好两个盒子的宽度、间隔之和设置一个margin值
 
+优缺点
+
+- 优点：代码简单；容易理解；兼容性好
+- 缺点：margin或padding的值要对应好；父元素宽度不够浮动元素会换行
 
 ##### (2)使用float+overflow实现▲
 
@@ -1175,14 +1275,67 @@ css代码:
 }
 ```
 
+原理：两个盒子浮动，另一个盒子触发bfc达到自适应
+
 优缺点：
 
 - 优点：代码简单，容易理解，无需关注定宽的宽度，利用bfc达到自适应效果
-- 缺点：浮动脱离文档流，需要手动清除浮动，否则会产生高度塌陷；不支持ie6
+- 缺点：#right设置margin-left需要大于左边两个盒子宽度、间隔之和才有效。或者直接给#center设置margin-right；父元素宽度不够，浮动元素换行
 
 
+##### (3)使用绝对定位实现▲
 
-##### (3)使用table实现▲
+html代码:
+
+```
+<body>
+<div id="parent">
+    <div id="left">左列定宽</div>
+    <div id="center">中间定宽</div>
+    <div id="right">右列自适应</div>
+</div>
+</body>
+```
+
+css代码:
+
+```
+#parent {position: relative;} /*父相*/
+#left {
+    position: absolute; /*子绝*/
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 500px;
+    background-color: #f00;
+}
+#center {
+    position: absolute; /*子绝*/
+    left: 100px;        /*对应#left的width值*/
+    top: 0;
+    width: 200px;
+    height: 500px;
+    background-color: #eeff2b;
+}
+#right {
+    position: absolute; /*子绝*/
+    left: 300px;        /*对应#left和#center的width值之和*/
+    top: 0;
+    right: 0;
+    height: 500px;
+    background-color: #0f0;
+}
+```
+
+原理：计算好盒子的宽度和间隔去设置位置
+
+优缺点：
+
+- 优点：容易理解；兼容性比较好；改变相对灵活
+- 缺点：需手动计算宽度、间隔之和确定位置；
+
+
+##### (4)使用table实现▲
 
 html代码:
 
@@ -1223,14 +1376,15 @@ css代码:
 }
 ```
 
+原理：CSS Table以表格的形式显示
+
 优缺点：
 
-- 优点：代码简单，容易理解，无需关注定宽的宽度，利用单元格自动分配达到自适应效果
-- 缺点：margin失效；设置间隔比较麻烦；不支持ie8-
+- 优点：代码简单；容易理解；适用于宽度高度未知情况；兼容性好（ie8+）
+- 缺点：margin失效；设置间隔比较麻烦；设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
 
 
-
-##### (4)使用flex实现
+##### (5)使用flex实现
 
 html代码:
 
@@ -1267,9 +1421,15 @@ css代码:
 }
 ```
 
+原理：flex设置排列方式、对齐方式罢了，请查阅文末flex阅读推荐
 
+优缺点
 
-##### (5)使用Grid实现
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
+
+##### (6)使用Grid实现
 
 html代码:
 
@@ -1302,13 +1462,18 @@ css代码:
 #right {background-color: #0f0;}
 ```
 
+原理：css grid布局，请查看文末的阅读推荐
 
+优缺点
+
+- 优点：灵活划分网格区域；新型布局利器，适用于页面三维布局
+- 缺点：[兼容性不好](https://caniuse.com/#search=grid)，移动端（Android5.0+）
 
 
 
 #### 5.2 两侧定宽,中间自适应
 
-##### 5.2.1 双飞翼布局方法
+##### 5.2.1 双飞翼布局方法▲
 
 效果图:
 
@@ -1509,6 +1674,13 @@ css代码:
 }
 ```
 
+原理：css grid布局，请查看文末的阅读推荐
+
+优缺点
+
+- 优点：灵活划分网格区域；新型布局利器，适用于页面三维布局
+- 缺点：[兼容性不好](https://caniuse.com/#search=grid)，移动端（Android5.0+）
+
 
 
 ##### 5.2.4 其他方法
@@ -1555,11 +1727,12 @@ css代码:
 }
 ```
 
+原理：CSS Table以表格的形式显示
+
 优缺点：
 
-- 优点：代码简洁，容易理解；
-- 缺点：margin失效，采用border-spacing表格两边的间隔无法消除；不支持ie8-
-
+- 优点：代码简单；容易理解；适用于宽度高度未知情况；兼容性好（ie8+）
+- 缺点：margin失效；设置间隔比较麻烦；设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
 
 
 ###### (2)使用flex实现
@@ -1597,7 +1770,13 @@ css代码:
 }
 ```
 
+原理：flex设置排列方式、对齐方式罢了，请查阅文末flex阅读推荐
 
+优缺点
+
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
 
 ###### (3)使用position实现▲
 
@@ -1641,11 +1820,23 @@ css代码:
 }
 ```
 
+原理：计算好盒子的宽度和间隔去设置位置
+
 优缺点：
 
-- 优点：容易理解，兼容性比较好
-- 缺点：需手动计算宽度确定边距；脱离文档流；代码繁多
+- 优点：容易理解；代码相对其他方法较少；兼容性比较好；改变相对灵活
+- 缺点：需手动计算宽度、间隔之和确定边距；
 
+
+
+
+#### ★本章小结：
+
+- 两列定宽，一列自适应布局，个人推荐方法就是两列浮动，一列触发bfc去达到自适应效果，代码较少，需要注意的就是清除浮动和margin的设置以及父元素空间是否足够；
+- 只要是三列布局，其实都可以用绝对定位去实现，理解起来不难，而且变化灵活，不太好的就是脱离文档流，导致不一定能撑起父元素高度，对于下面排布的盒子会有影响，还有需要手动计算边距的值去排布盒子；
+- 其次可以选用css table布局，代码是最少的，就是bug有点多；
+- 两侧定宽,中间自适应，就必须得说说圣杯布局和双飞翼布局，这两个是比较难理解的，然后圣杯布局有缺陷，如果浏览器无限变窄，圣杯布局将会乱套。绝对定位布局在不等高的时候也会对下面盒子排布产生影响。那么双飞翼布局似乎是最好的选择了。不管怎样，圣杯布局和双飞翼布局都是要好好学习的，这样对盒模型和浮动会有更深的理解；
+- 移动端兼容性允许的情况下能用flex就用flex，务必带上兼容，写法可参考文末阅读推荐，也可以使用Autoprefixer；
 
 
 
@@ -1693,12 +1884,15 @@ css代码:
 }
 .column:nth-child(odd){background-color: #f00;}
 .column:nth-child(even){background-color: #0f0;}
+
 ```
+
+原理：根据父元素空间宽度平分，子元素设置浮动，用padding去模拟间隔，再给父元素一个位移抵消第一个间隔
 
 优缺点：
 
-- 优点：代码简单，容易理解；兼容性较好
-- 缺点：需要手动清除浮动，否则会产生高度塌陷
+- 优点：代码简单，容易理解；兼容性较好（ie8+）
+- 缺点：需要手动清除浮动，否则会产生高度塌陷；由于是百分比平分宽度不能设置margin，否则占位超出父元素宽度换行显示
 
 
 
@@ -1736,11 +1930,12 @@ css代码:
 .column:nth-child(even){background-color: #0f0;}
 ```
 
+原理：CSS Table以表格的形式显示
+
 优缺点：
 
-- 优点：代码简单，容易理解；无需关注宽度，单元格自动等分
-- 缺点：margin失效；设置间隔比较麻烦；不支持ie8-
-
+- 优点：代码简单；容易理解；适用于宽度高度未知情况；兼容性好（ie8+）
+- 缺点：margin失效；设置间隔比较麻烦；设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
 
 
 ###### (3)使用flex实现
@@ -1778,7 +1973,13 @@ css代码:
 .column:nth-child(even){background-color: #0f0;}
 ```
 
+原理：flex设置排列方式、对齐方式罢了，请查阅文末flex阅读推荐
 
+优缺点
+
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
 
 ##### 6.1.2多列等宽
 
@@ -1816,11 +2017,12 @@ css代码:
 .column:nth-child(even){background-color: #0f0;}
 ```
 
+原理：根据父元素空间宽度平分，子元素设置浮动，用padding去模拟间隔，再给父元素一个位移抵消第一个间隔
+
 优缺点：
 
-- 优点：代码简单，容易理解；兼容性较好
-- 缺点：需要手动清除浮动，否则会产生高度塌陷
-
+- 优点：代码简单，容易理解；兼容性较好（ie8+）
+- 缺点：需要手动清除浮动，否则会产生高度塌陷；由于是百分比平分宽度不能设置margin，否则占位超出父元素宽度换行显示
 
 
 ###### (2)使用table实现▲
@@ -1854,11 +2056,12 @@ css代码:
 .column:nth-child(even){background-color: #0f0;}
 ```
 
+原理：CSS Table以表格的形式显示
+
 优缺点：
 
-- 优点：代码简单，容易理解；无需关注宽度。单元格自动等分
-- 缺点：margin失效；设置间隔比较麻烦；不兼容ie8-
-
+- 优点：代码简单；容易理解；适用于宽度高度未知情况；兼容性好（ie8+）
+- 缺点：margin失效；设置间隔比较麻烦；设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
 
 
 ###### (3)使用flex实现
@@ -1891,7 +2094,13 @@ css代码:
 .column:nth-child(even){background-color: #0f0;}
 ```
 
+原理：flex设置排列方式、对齐方式罢了，请查阅文末flex阅读推荐
 
+优缺点
+
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
 
 ###### (4)使用Grid实现
 
@@ -1922,6 +2131,13 @@ css代码:
 .column:nth-child(odd){background-color: #f00;}
 .column:nth-child(even){background-color: #0f0;}
 ```
+
+原理：css grid布局，请查看文末的阅读推荐
+
+优缺点
+
+- 优点：灵活划分网格区域；新型布局利器，适用于页面三维布局
+- 缺点：[兼容性不好](https://caniuse.com/#search=grid)，移动端（Android5.0+）
 
 
 
@@ -1973,11 +2189,12 @@ css代码:
 }
 ```
 
+原理：CSS Table以表格的形式显示
+
 优缺点：
 
-- 优点：代码简洁，容易理解；
-- 缺点：margin失效，采用border-spacing表格两边的间隔无法消除；不支持ie8-
-
+- 优点：代码简单；容易理解；适用于宽度高度未知情况；兼容性好（ie8+）
+- 缺点：margin失效；设置间隔比较麻烦；设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
 
 
 ##### (2)使用flex实现
@@ -2026,7 +2243,13 @@ css代码:
 }
 ```
 
+原理：flex设置排列方式、对齐方式罢了，请查阅文末flex阅读推荐
 
+优缺点
+
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
 
 ##### (3)使用Grid实现
 
@@ -2071,8 +2294,7 @@ css代码:
 优缺点：
 
 - 优点：代码简洁，容易理解；提高页面内容的流动性，能适应多种设备；
-
-  ​
+- 缺点：浮动脱离文档流，需要清除浮动；由于是百分比平分宽度不能设置margin，否则占位超出父元素宽度换行显示
 
 ##### (1)用Less生成
 
@@ -2145,6 +2367,13 @@ div[class^="column-sm-"]{
 
 
 
+#### ★本章小结：
+
+- 对于多列等宽布局，目前常用的还是浮动，宽度按百分比去平分。要是百分比的话就不太好设置margin，只能用padding去模拟间隔。又或者是固定宽度，计算好间隔，刚好填满或接近填满，这样倒是可以直接设置margin；
+- 除了浮动，其实还可以用到inline-block，但是要注意html换行或空格都会占位，有可能导致空间不够换行显示，这样就要给父元素设置一个font-size：0，然后再给设置inline-block的盒子设置所需要大小的font-size；
+- 然后就是css table布局了，想划分多少列都可以，灵活简单，就是一些不感知属性要注意；
+- 移动端兼容性允许的情况下能用flex就用flex，务必带上兼容，写法可参考文末阅读推荐，也可以使用Autoprefixer；
+
 
 
 ### 七、全屏布局
@@ -2202,12 +2431,15 @@ html, body, #parent {height: 100%;overflow: hidden;}
     bottom: 0;
     height: 50px;
 }
+
 ```
+
+原理：计算好盒子的宽度和间隔去设置位置
 
 优缺点：
 
-- 优点：容易理解
-- 缺点：代码繁多；需要计算好各个盒子的宽高；
+- 优点：容易理解；兼容性好
+- 缺点：代码繁多；需要计算好各个盒子的位置；
 
 
 
@@ -2253,7 +2485,13 @@ html,body,#parent{height:100%;}
 }
 ```
 
+原理：flex设置排列方式、对齐方式罢了，请查阅文末flex阅读推荐
 
+优缺点
+
+- 优点：简单灵活；功能强大
+- 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
 
 ##### (3)使用Grid实现
 
@@ -2301,7 +2539,12 @@ html, body, #parent {
 #bottom{grid-area: footer;  /*指定在哪个网格区域*/}
 ```
 
+原理：css grid布局，请查看文末的阅读推荐
 
+优缺点
+
+- 优点：灵活划分网格区域；新型布局利器，适用于页面三维布局
+- 缺点：[兼容性不好](https://caniuse.com/#search=grid)，移动端（Android5.0+）
 
 
 
@@ -3660,17 +3903,14 @@ body {
 
 ```
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
 ```
 
 
 
 ##### 阅读推荐：
 
-解读 viewport—网页自适应移动 app 神器
-
-https://juejin.im/entry/58e750a02f301e0062367ded
-
-
+[解读 viewport—网页自适应移动 app 神器](https://juejin.im/entry/58e750a02f301e0062367ded)
 
 
 
@@ -3689,13 +3929,9 @@ https://juejin.im/entry/58e750a02f301e0062367ded
 
 ##### 阅读推荐：
 
-MDN文档介绍
+[MDN文档介绍](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries)
 
-https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries
-
-随方逐圆 -- 全面理解 CSS 媒体查询
-
-https://juejin.im/entry/595b6208f265da6c3902041e
+[随方逐圆 -- 全面理解 CSS 媒体查询](https://juejin.im/entry/595b6208f265da6c3902041e)
 
 
 
@@ -3703,13 +3939,9 @@ https://juejin.im/entry/595b6208f265da6c3902041e
 
 ##### 阅读推荐：
 
-Rem布局的原理解析
+[Rem布局的原理解析](http://yanhaijing.com/css/2017/09/29/principle-of-rem-layout/)
 
-http://yanhaijing.com/css/2017/09/29/principle-of-rem-layout/
-
-rem是如何实现自适应布局的？
-
-http://caibaojian.com/web-app-rem.html
+[rem是如何实现自适应布局的？](http://caibaojian.com/web-app-rem.html)
 
 
 
@@ -3717,13 +3949,11 @@ http://caibaojian.com/web-app-rem.html
 
 ##### 阅读推荐：
 
-理解Flexbox：你需要知道的一切
+[理解Flexbox：你需要知道的一切](https://www.w3cplus.com/css3/understanding-flexbox-everything-you-need-to-know.html)
 
-https://www.w3cplus.com/css3/understanding-flexbox-everything-you-need-to-know.html
+[深入理解 flex 布局以及计算](https://www.w3cplus.com/css3/flexbox-layout-and-calculation.html?from=groupmessage)
 
-深入理解 flex 布局以及计算
-
-https://www.w3cplus.com/css3/flexbox-layout-and-calculation.html?from=groupmessage
+[Flex 布局新旧混合写法详解（兼容微信）](https://segmentfault.com/a/1190000003978624#articleHeader13)
 
 
 
@@ -3731,13 +3961,9 @@ https://www.w3cplus.com/css3/flexbox-layout-and-calculation.html?from=groupmessa
 
 ##### 阅读推荐：
 
-grid布局学习指南
+[grid布局学习指南](http://blog.jirengu.com/?p=990)
 
-http://blog.jirengu.com/?p=990
-
-grid规范草稿 
-
-https://drafts.csswg.org/css-grid/
+[grid规范草稿 ](https://drafts.csswg.org/css-grid/)
 
 
 
