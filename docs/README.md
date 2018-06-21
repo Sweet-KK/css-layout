@@ -3993,11 +3993,11 @@ CSS代码:
 
 展开效果图：
 
-![1529545198369](C:\Users\Admin\AppData\Local\Temp\1529545198369.png)
+![1529545198369.png](https://upload-images.jianshu.io/upload_images/8192053-7792be70b6f50bae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 收缩效果图：
 
-![1529545209218](C:\Users\Admin\AppData\Local\Temp\1529545209218.png)
+![1529545209218.png](https://upload-images.jianshu.io/upload_images/8192053-478d64b6c964d3ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 测试demo是做的丑一点，你们把这个小黑点想象成icon图标~~~左边nav用了nicescroll美化
 
