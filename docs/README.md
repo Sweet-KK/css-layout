@@ -12,7 +12,9 @@
 
 > from github [https://github.com/Sweet-KK/css-layout(内容随时更新)](https://github.com/Sweet-KK/css-layout)			
 >
-> 本文原创，转载请标明出处，摘要引流则随意。
+> 本文原创，转载请标明出处
+>
+> 最近搞了个博客，有兴趣的[点击](https://www.sweet-kk.top/)看看
 
 
 
@@ -3894,11 +3896,257 @@ body {
 
 
 
+### 九、后续补充布局
+
+#### 9.1 后台常见布局1
+
+效果图：（就搭个大概，滚动条可以自己优化）![image.png](https://upload-images.jianshu.io/upload_images/8192053-5e70b122947e6a48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+HTML代码：
+
+```
+<body>
+<div class="header">
+    <h1><img src="" alt="logo"></h1>
+    <div class="admin">admin</div>
+</div>
+<div class="nav">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+        <li>11</li>
+        <li>12</li>
+        <li>13</li>
+        <li>14</li>
+        <li>15</li>
+        <li>16</li>
+        <li>17</li>
+        <li>18</li>
+        <li>19</li>
+        <li>20</li>
+    </ul>
+</div>
+<div class="main">
+    <div class="content"></div>
+</div>
+</body>
+```
+
+CSS代码:
+
+```
+<style>
+    .header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background-color: #f00;
+    }
+    .header h1{
+        float: left;
+    }
+    .header .admin{
+        float: right;
+        line-height: 80px;
+    }
+    .nav{
+        position: fixed;
+        top: 80px;  /*对应header的高度*/
+        left: 0;
+        width: 120px;
+        bottom: 0;
+        background-color: #3399ff;
+        overflow: auto;  /*避免菜单项太多,超出的不显示*/
+    }
+    .nav li{
+        line-height: 30px;
+    }
+    .main{
+        margin-top: 100px;  /*大于等于header的高度*/
+        margin-left: 130px;  /*大于等于左边nav的宽度*/
+        border: 2px solid #000;
+    }
+    .main .content{
+        min-height: 550px;
+        background-color: #ccc;
+    }
+</style>
+```
+
+###### 总结：
+
+主要是运用固定定位，PC端兼容性好（已测IE8+没有问题），移动端fixed定位是有些bug的，网上也都有相应的解决方案。况且这种后台布局多用于PC端
 
 
-### 九、其他补充：
 
-#### 9.1 移动端viewport
+#### 9.2 后台常见布局2 (点击可以收缩展开菜单栏)
+
+展开效果图：
+
+![1529545198369](C:\Users\Admin\AppData\Local\Temp\1529545198369.png)
+
+收缩效果图：
+
+![1529545209218](C:\Users\Admin\AppData\Local\Temp\1529545209218.png)
+
+测试demo是做的丑一点，你们把这个小黑点想象成icon图标~~~左边nav用了nicescroll美化
+
+页面代码如下：
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta charset="UTF-8">
+    <title>test</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 40px;
+        border: 2px solid #000;
+        box-sizing: border-box;
+        line-height: 40px;
+    }
+    .header .header-box{
+        position: absolute;
+        left: 200px;  /*对应nav的宽度*/
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background-color: #f00;
+        transition: all 0.2s;
+    }
+    .header .header-box.hidden{
+        left: 40px;  /*对应收缩后nav的宽度*/
+    }
+    .header h1{
+        float: left;
+    }
+    .header .admin{
+        float: right;
+    }
+    .nav{
+        position: fixed;
+        width: 200px;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background-color: #339933;
+        transition: all 0.2s;
+    }
+    .nav.hidden{
+        width: 40px;  /*收缩后nav的宽度*/
+    }
+    .nav li{
+        margin-left: 30px; /*只是为了能看到小黑点，此处可省略*/
+        width: 100%;
+        line-height: 30px;
+    }
+    .main{
+        margin-top: 50px;  /*对应header的高度*/
+        margin-left: 200px;  /*对应nav的宽度*/
+        border: 2px solid #000;
+        transition: all 0.2s;
+    }
+    .main.hidden{
+        margin-left: 40px;  /*对应收缩后nav的宽度*/
+    }
+    .main .content{
+        min-height: 500px;
+        background: #ccc;
+    }
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="header-box">
+        <a id="toggle" href="javascript:;">toggle</a>
+        <div class="admin">admin</div>
+    </div>
+</div>
+<div class="nav">
+    <ul>
+        <li>0001</li>
+        <li>0002</li>
+        <li>0003</li>
+        <li>0004</li>
+        <li>0005</li>
+        <li>0006</li>
+        <li>0007</li>
+        <li>0008</li>
+        <li>0009</li>
+        <li>0010</li>
+        <li>0011</li>
+        <li>0012</li>
+        <li>0013</li>
+        <li>0014</li>
+        <li>0015</li>
+        <li>0016</li>
+        <li>0017</li>
+        <li>0018</li>
+        <li>0019</li>
+        <li>0020</li>
+    </ul>
+</div>
+<div class="main">
+    <div class="content">
+        内容区
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+<script>
+    $(function () {
+      // 滚动条美化
+      $('.nav').niceScroll('ul',{
+        cursorwidth: "0px",  // 滚动条宽度
+        bouncescroll: false, // 回弹效果
+      });
+
+      // 菜单栏展开/收缩
+      $('#toggle').click(function () {
+        $('.header-box,.main,.nav').toggleClass('hidden')
+        // 滚动条随着div的伸缩调整位置
+        $('.nav').getNiceScroll().resize()
+      })
+    })
+
+</script>
+</body>
+</html>
+```
+
+###### 总结：
+
+用了fixed定位，使用了nicescroll，兼容IE8+以上；
+
+
+
+
+
+### 十、其他补充：
+
+#### 10.1 移动端viewport
 
 ##### 设置viewport：
 
@@ -3915,7 +4163,7 @@ body {
 
 
 
-#### 9.2 媒体查询
+#### 10.2 媒体查询
 
 ##### 代码示例：
 
@@ -3936,7 +4184,7 @@ body {
 
 
 
-#### 9.3 REM
+#### 10.3 REM
 
 ##### 阅读推荐：
 
@@ -3946,7 +4194,7 @@ body {
 
 
 
-#### 9.4 Flexbox
+#### 10.4 Flexbox
 
 ##### 阅读推荐：
 
@@ -3958,7 +4206,7 @@ body {
 
 
 
-#### 9.5 CSS Grid 
+#### 10.5 CSS Grid 
 
 ##### 阅读推荐：
 
