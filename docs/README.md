@@ -2199,7 +2199,7 @@ css代码:
 - 缺点：margin失效；设置间隔比较麻烦；设置tabl-cell的元素，宽度和高度的值设置百分比无效，需要给它的父元素设置`display: table;` 才生效；table-cell不感知margin，在父元素上设置table-row等属性，也会使其不感知height；设置float或position会对默认布局造成破坏，可以考虑为之增加一个父div定义float等属性；内容溢出时会自动撑开父元素
 
 
-##### (2)使用flex实现
+##### (2-1)使用flex实现
 
 html代码:
 
@@ -2250,6 +2250,123 @@ css代码:
 优缺点
 
 - 优点：简单灵活；功能强大
+- 缺点：每三个一行,对于动态创建不确定数量的元素要控制好嵌套结构，PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
+
+##### (2-2)flex优化版（不需要遵守三个嵌套一行）
+
+![image.png](https://upload-images.jianshu.io/upload_images/8192053-5f763ea6ebdf000d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+html代码:
+
+```
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+</body>
+```
+
+css代码:
+
+```
+* {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    width: 100%;
+    background-color: #ccc;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+ul > li {
+    width: 33.333333333333%;
+    height: 100px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #000;
+}
+```
+
+原理：父元素flex并设置换行，子元素不设置伸缩，转而定宽设置宽三分之一，高度自定义，计算好宽度即能实现九宫格布局（也可以多列等宽布局）
+
+优缺点
+
+- 优点：简单灵活；功能强大；不需要额外的嵌套关系，灵活运用于动态创建数量不等的元素布局中；
+- 缺点：高度需要自定无法等宽，PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
+- flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
+
+##### (2-3)flex再优化版（高度等宽九宫格）
+
+![image.png](https://upload-images.jianshu.io/upload_images/8192053-96913d997afa1d02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+html代码:
+
+```
+<body>
+<ul>
+    <li>
+        <span>1</span>
+    </li>
+    <li>
+        <span>1</span>
+    </li>
+    <li>
+        <span>1</span>
+    </li>
+    <li>
+        <span>1</span>
+    </li>
+</ul>
+</body>
+```
+
+css代码:
+
+```
+*{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    width: 100%;
+    margin: 0 auto;
+    background-color: #ccc;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+ul>li{
+    width: 33.33333%;
+    padding-top: 33.33333%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #000;
+    position: relative;
+    height: 0;
+}
+ul>li>span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #999;
+}
+```
+
+原理：（TODO后续补充）
+
+优缺点
+
+- 优点：简单灵活；功能强大；高度等宽；不需要额外的嵌套关系，灵活运用于动态创建数量不等的元素布局中
 - 缺点：PC端[兼容性不好](https://caniuse.com/#search=flex)，移动端（Android4.0+）
 - flex务必带上兼容，写法请参考文末阅读推荐，也可以使用autoprefixer
 
