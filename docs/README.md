@@ -1575,7 +1575,6 @@ css代码:
     background-color: #ccc;
 }
 #parent {
-    box-sizing: border-box;
     height: 500px;
     padding: 0 215px 0 115px;  /*为了使#center摆正,左右padding分别等于左右盒子的宽,可以结合左右盒子相对定位的left调整间距*/
 }
