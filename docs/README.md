@@ -6,7 +6,7 @@
 
 **在github上Markdown不支持目录，所以准备了一个[docsify文档网站](https://sweet-kk.github.io/css-layout/)**。←点这里阅读（已附带目录）
 
-**这个是[效果demo](http://www.sweet-kk.top/css-layout-demo/)**
+**这个是[效果demo](https://sweet-kk.github.io/css-layout-demo/)**
 
 **如果直接阅读README没有目录会看得很辛苦，建议安装Chrome插件[Smart TOC](https://www.appinn.com/smart-toc-for-chrome/)或者clone到本地用支持TOC目录的md软件打开阅读，比如[Typora](http://www.duote.com/soft/74881.html#download)**
 
@@ -16,7 +16,6 @@
 >
 > 本文原创，转载请标明出处
 >
-> 最近搞了个博客，有兴趣的[点击](https://www.sweet-kk.top/)看看
 
 
 
